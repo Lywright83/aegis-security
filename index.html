@@ -4,13 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>AEGIS Enterprise — AI Security Architect</title>
-<meta name="description" content="AEGIS Enterprise — AI Security Architect Platform. Live threat intelligence, multi-cloud, compliance, and enterprise integrations.">
-<meta property="og:title" content="AEGIS Enterprise Security Platform">
-<meta property="og:description" content="AI-powered security architect with live threat intel, multi-cloud access, and compliance guidance.">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- Notion embed / iframe compatibility -->
-<meta http-equiv="Content-Security-Policy" content="frame-ancestors *;">
-<style>html{scroll-behavior:smooth}</style>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
 :root{--bg:#020b12;--bg2:#041018;--bg3:#061520;--bg4:#081c2a;--cyan:#00d4ff;--green:#00ff88;--orange:#ff8c42;--red:#ff3366;--purple:#9d6fff;--yellow:#ffd166;--txt:#d8eef8;--txt2:#6a9fb5;--txt3:#2e5a72;--border:#0c3449;--border2:#082536}
@@ -220,6 +213,26 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
 #keyBadge{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,255,136,.3);color:var(--green);background:rgba(0,255,136,.06);cursor:pointer;transition:all .2s}
 #keyBadge:hover{border-color:var(--green);background:rgba(0,255,136,.12)}
 .key-dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2s infinite}
+/* Docs button + dropdown */
+.docs-wrap{position:relative}
+#docsBtn{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,212,255,.3);color:var(--cyan);background:rgba(0,212,255,.06);cursor:pointer;transition:all .2s}
+#docsBtn:hover{border-color:var(--cyan);background:rgba(0,212,255,.14);box-shadow:0 0 10px rgba(0,212,255,.12)}
+.docs-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;width:260px;background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--cyan);border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 20px rgba(0,212,255,.06);z-index:999;overflow:hidden}
+.docs-dropdown.open{display:block;animation:ddopen .18s ease}
+@keyframes ddopen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.dd-header{padding:8px 12px;background:rgba(0,212,255,.06);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:2px}
+.dd-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border2);text-decoration:none;transition:background .18s;cursor:pointer}
+.dd-item:last-child{border-bottom:none}
+.dd-item:hover{background:rgba(0,212,255,.07)}
+.dd-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.dd-text{flex:1}
+.dd-title{font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--txt);letter-spacing:.5px;line-height:1.2}
+.dd-sub{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--txt3);margin-top:2px;line-height:1.4}
+.dd-ext{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--cyan);margin-top:3px}
+.dd-divider{height:1px;background:var(--border);margin:2px 0}
+.dd-github{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(0,255,136,.04);text-decoration:none;transition:background .18s}
+.dd-github:hover{background:rgba(0,255,136,.1)}
+.dd-github span{font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--green);letter-spacing:1px}
 </style>
 </head>
 <body>
@@ -281,6 +294,34 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
     <div class="hdr-pill pill-mem"><div class="hdr-dot dot-p"></div>MEMORY: <span id="memCount">0</span> MSGS</div>
   </div>
   <div class="hdr-right">
+    <!-- DOCS BUTTON -->
+    <div class="docs-wrap" id="docsWrap">
+      <button id="docsBtn" onclick="toggleDocs(event)" title="Documentation & Guides">📄 DOCS</button>
+      <div class="docs-dropdown" id="docsDropdown">
+        <div class="dd-header">// AEGIS DOCUMENTATION</div>
+        <a class="dd-item" href="https://yourusername.github.io/aegis-security/AEGIS-Enterprise-Setup-Guide.pdf" target="_blank">
+          <span class="dd-icon">⚙️</span>
+          <div class="dd-text">
+            <div class="dd-title">Setup Guide</div>
+            <div class="dd-sub">Quick start, features, backend agent, privacy</div>
+            <div class="dd-ext">↗ AEGIS-Enterprise-Setup-Guide.pdf</div>
+          </div>
+        </a>
+        <a class="dd-item" href="https://yourusername.github.io/aegis-security/AEGIS-Integration-Guide.pdf" target="_blank">
+          <span class="dd-icon">🔗</span>
+          <div class="dd-text">
+            <div class="dd-title">Integration Guide</div>
+            <div class="dd-sub">Slack, Jira, Splunk, Nessus, Notion, M365 & more</div>
+            <div class="dd-ext">↗ AEGIS-Integration-Guide.pdf</div>
+          </div>
+        </a>
+        <div class="dd-divider"></div>
+        <a class="dd-github" href="https://yourusername.github.io/aegis-security" target="_blank">
+          <span style="font-size:1rem">⬡</span>
+          <span>OPEN AEGIS IN NEW TAB &nbsp;↗</span>
+        </a>
+      </div>
+    </div>
     <button id="keyBadge" onclick="showKeyManager()" title="API Key — click to update"><div class="key-dot"></div><span id="keyBadgeLabel">KEY: SET</span></button>
     <span id="clock"></span>
   </div>
@@ -913,6 +954,19 @@ function saveInt(tool){
 }
 
 function showSt(el,msg,type){el.textContent=msg;el.className=`int-status-msg ${type}`;}
+
+function toggleDocs(e){
+  e.stopPropagation();
+  const dd=document.getElementById('docsDropdown');
+  dd.classList.toggle('open');
+}
+// Close docs dropdown when clicking anywhere else
+document.addEventListener('click',function(e){
+  const wrap=document.getElementById('docsWrap');
+  if(wrap&&!wrap.contains(e.target)){
+    document.getElementById('docsDropdown').classList.remove('open');
+  }
+});
 
 loadMemory();
 loadApiKey();
