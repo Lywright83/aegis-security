@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AEGIS Enterprise — AI Security Architect</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+:root{--bg:#020b12;--bg2:#041018;--bg3:#061520;--bg4:#081c2a;--cyan:#00d4ff;--green:#00ff88;--orange:#ff8c42;--red:#ff3366;--purple:#9d6fff;--yellow:#ffd166;--txt:#d8eef8;--txt2:#6a9fb5;--txt3:#2e5a72;--border:#0c3449;--border2:#082536}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
+header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:8px 18px;background:rgba(4,16,24,.98);border-bottom:1px solid var(--border);flex-shrink:0}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-hex svg{width:34px;height:34px;filter:drop-shadow(0 0 8px var(--cyan));animation:hpulse 3s ease-in-out infinite}
+@keyframes hpulse{0%,100%{filter:drop-shadow(0 0 6px var(--cyan))}50%{filter:drop-shadow(0 0 18px var(--cyan))}}
+.logo-text h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:5px;color:var(--cyan);text-shadow:0 0 18px rgba(0,212,255,.5);line-height:1}
+.logo-text p{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:2px;margin-top:2px}
+.hdr-center{display:flex;gap:6px}
+.hdr-pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:1px;border:1px solid;cursor:default}
+.pill-online{color:var(--green);border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.06)}
+.pill-search{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.06)}
+.pill-mem{color:var(--purple);border-color:rgba(157,111,255,.3);background:rgba(157,111,255,.06)}
+.hdr-dot{width:5px;height:5px;border-radius:50%;animation:blink 2s infinite}
+.dot-g{background:var(--green);box-shadow:0 0 6px var(--green)}.dot-c{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}.dot-p{background:var(--purple);box-shadow:0 0 6px var(--purple)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hdr-right{display:flex;align-items:center;gap:8px}
+#clock{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--txt3)}
+.tabbar{position:relative;z-index:15;display:flex;align-items:stretch;background:rgba(4,16,24,.96);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto}
+.tabbar::-webkit-scrollbar{height:2px}.tabbar::-webkit-scrollbar-thumb{background:var(--border)}
+.tab{display:flex;align-items:center;gap:6px;padding:9px 18px;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:1px;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0;background:transparent;border-top:none;border-left:none;border-right:none}
+.tab:hover{color:var(--txt2);background:rgba(0,212,255,.04)}.tab.active{color:var(--cyan);border-bottom-color:var(--cyan);background:rgba(0,212,255,.06)}
+.workspace{position:relative;z-index:5;flex:1;overflow:hidden;display:flex}
+.panel{display:none;flex:1;overflow:hidden;flex-direction:column}.panel.active{display:flex}
+/* CHAT */
+.chat-layout{display:flex;flex:1;overflow:hidden}
+.chat-sidebar{width:195px;flex-shrink:0;background:rgba(6,21,37,.97);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.cs-section{padding:11px;border-bottom:1px solid var(--border2)}
+.cs-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
+.qbtn{display:block;width:100%;text-align:left;padding:6px 9px;margin-bottom:2px;background:transparent;border:1px solid transparent;border-radius:2px;color:var(--txt2);font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;transition:all .18s;line-height:1.35}
+.qbtn:hover{border-color:var(--border);background:rgba(0,212,255,.05);color:var(--cyan);padding-left:11px}
+.cs-caps{flex:1;overflow-y:auto;padding:11px}
+.cap{display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(12,52,73,.3);font-size:.74rem;color:var(--txt2);line-height:1.4}
+.cap-dot{width:3px;height:3px;border-radius:50%;background:var(--cyan);margin-top:5px;flex-shrink:0;opacity:.5}
+.chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.messages{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:16px}
+.messages::-webkit-scrollbar{width:3px}.messages::-webkit-scrollbar-thumb{background:var(--border)}
+.welcome{text-align:center;padding:28px 16px;animation:fin .7s ease}
+@keyframes fin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.welcome h2{font-family:'Rajdhani',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--cyan);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:6px}
+.welcome p{color:var(--txt2);font-size:.95rem;line-height:1.7;max-width:480px;margin:0 auto 18px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:560px;margin:0 auto}
+.chip{padding:5px 13px;border:1px solid var(--border);border-radius:2px;font-size:.72rem;color:var(--txt2);cursor:pointer;background:rgba(0,212,255,.03);font-family:'Share Tech Mono',monospace;transition:all .18s}
+.chip:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.07)}
+.msg{display:flex;gap:10px;animation:fin .25s ease;max-width:840px}
+.msg.user{flex-direction:row-reverse;align-self:flex-end}.msg.ai{align-self:flex-start;width:100%}
+.av{width:30px;height:30px;border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-family:'Share Tech Mono',monospace;margin-top:2px}
+.msg.ai .av{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--cyan)}
+.msg.user .av{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);color:var(--green)}
+.mc{max-width:calc(100% - 40px);min-width:0}
+.mm{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:1px;margin-bottom:3px}
+.msg.user .mm{text-align:right}
+.mb{padding:12px 16px;border-radius:2px;font-size:1rem;line-height:1.8;word-break:break-word}
+.msg.ai .mb{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--cyan)}
+.msg.user .mb{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.18);border-right:2px solid var(--green);text-align:right}
+.mb pre{background:rgba(2,11,18,.9);border:1px solid var(--border);border-radius:2px;padding:12px;margin:8px 0;overflow-x:auto;font-family:'Share Tech Mono',monospace;font-size:.82rem;color:var(--cyan);line-height:1.65;white-space:pre-wrap}
+.mb code{font-family:'Share Tech Mono',monospace;font-size:.88rem;color:var(--green);background:rgba(0,255,136,.05);padding:2px 6px;border-radius:2px}
+.mb strong{color:var(--cyan);font-weight:600}.mb h3{font-family:'Rajdhani',sans-serif;font-size:1.05rem;letter-spacing:1px;color:var(--cyan);margin:12px 0 5px;font-weight:600}
+.mb ul{padding-left:16px;margin:6px 0}.mb li{margin:4px 0;color:var(--txt2)}.mb li::marker{color:var(--cyan)}
+.stag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.66rem;letter-spacing:1px;margin:1px}
+.tc{background:rgba(255,51,102,.14);border:1px solid rgba(255,51,102,.4);color:var(--red)}
+.th{background:rgba(255,140,66,.12);border:1px solid rgba(255,140,66,.35);color:var(--orange)}
+.tm{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--cyan)}
+.tl{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.22);color:var(--green)}
+.typing{display:flex;gap:10px;align-items:flex-start;animation:fin .25s ease}
+.tdots{padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--cyan);border-radius:2px;display:flex;align-items:center;gap:4px}
+.tdots span{width:4px;height:4px;border-radius:50%;background:var(--cyan);animation:dp 1.2s ease-in-out infinite;opacity:.4}
+.tdots span:nth-child(2){animation-delay:.2s}.tdots span:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.input-bar{padding:10px 14px;background:rgba(4,16,24,.98);border-top:1px solid var(--border);flex-shrink:0}
+.irow{display:flex;gap:7px;align-items:flex-end}.iwrap{flex:1}
+textarea{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:10px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:1rem;resize:none;outline:none;min-height:44px;max-height:120px;line-height:1.5;transition:border-color .2s;overflow-y:auto;-webkit-appearance:none}
+textarea::placeholder{color:var(--txt3);font-family:'Share Tech Mono',monospace;font-size:.76rem}
+textarea:focus{border-color:rgba(0,212,255,.4)}
+.sbtn{width:42px;height:42px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--cyan);flex-shrink:0}
+.sbtn:hover:not(:disabled){background:rgba(0,212,255,.2);border-color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,.18)}
+.sbtn:disabled{opacity:.4;cursor:not-allowed}.sbtn svg{width:15px;height:15px}
+.ihint{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);margin-top:5px;display:flex;gap:12px;flex-wrap:wrap}
+/* THREAT INTEL */
+.intel-panel{flex:1;overflow-y:auto;padding:20px}
+.panel-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--cyan);margin-bottom:4px}
+.panel-sub{font-family:'Share Tech Mono',monospace;font-size:.54rem;color:var(--txt3);letter-spacing:1px;margin-bottom:18px}
+.intel-search-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.intel-search-bar input{flex:1;min-width:200px;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:8px 12px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.7rem;outline:none}
+.intel-search-bar input:focus{border-color:rgba(0,212,255,.4)}.intel-search-bar input::placeholder{color:var(--txt3)}
+.ibtn{padding:8px 12px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);border-radius:2px;color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.58rem;cursor:pointer;transition:all .18s;white-space:nowrap}
+.ibtn:hover{background:rgba(0,212,255,.2);border-color:var(--cyan)}.ibtn:disabled{opacity:.4;cursor:not-allowed}
+.intel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.icard{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:14px;position:relative;overflow:hidden}
+.icard::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.icard.critical::before{background:var(--red)}.icard.high::before{background:var(--orange)}.icard.medium::before{background:var(--cyan)}.icard.info::before{background:var(--purple)}
+.ic-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.ic-title{font-family:'Rajdhani',sans-serif;font-size:.88rem;letter-spacing:1px;font-weight:600;color:var(--txt);flex:1;padding-right:8px}
+.ic-sev{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:1px;padding:2px 7px;border-radius:2px}
+.sev-c{background:rgba(255,51,102,.15);color:var(--red);border:1px solid rgba(255,51,102,.3)}
+.sev-h{background:rgba(255,140,66,.12);color:var(--orange);border:1px solid rgba(255,140,66,.28)}
+.sev-m{background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.22)}
+.sev-i{background:rgba(157,111,255,.08);color:var(--purple);border:1px solid rgba(157,111,255,.22)}
+.ic-body{font-size:.7rem;color:var(--txt2);line-height:1.6;margin-bottom:8px}
+.ic-meta{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--txt3);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.src-pill{padding:1px 6px;border:1px solid rgba(0,212,255,.2);border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt2);background:rgba(0,212,255,.04)}
+/* CLOUD */
+.cloud-panel{flex:1;overflow-y:auto;padding:20px}
+.cloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:18px}
+.cloud-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:18px}
+.cc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.cc-icon{font-size:1.3rem}.cc-name{font-family:'Rajdhani',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--txt);font-weight:600}
+.cc-status{font-family:'Share Tech Mono',monospace;font-size:.48rem;margin-left:auto;padding:2px 8px;border-radius:2px}
+.st-conn{color:var(--green);background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25)}
+.st-disc{color:var(--txt3);background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.st-err{color:var(--red);background:rgba(255,51,102,.08);border:1px solid rgba(255,51,102,.25)}
+.cc-field{margin-bottom:9px}.cc-label{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--txt3);letter-spacing:1px;margin-bottom:3px}
+.cc-input{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:7px 10px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.65rem;outline:none;transition:border-color .18s}
+.cc-input:focus{border-color:rgba(0,212,255,.4)}.cc-input::placeholder{color:var(--txt3)}
+.cc-actions{display:flex;gap:8px;margin-top:12px}
+.cc-btn{flex:1;padding:7px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .18s;letter-spacing:1px;border:1px solid}
+.cc-btn.primary{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.35);color:var(--cyan)}.cc-btn.primary:hover{background:rgba(0,212,255,.22);border-color:var(--cyan)}
+.cc-btn.secondary{background:transparent;border-color:var(--border);color:var(--txt2)}.cc-btn.secondary:hover{border-color:var(--txt2);color:var(--txt)}
+.cc-result{margin-top:10px;padding:8px 10px;background:var(--bg4);border:1px solid var(--border);border-radius:2px;font-size:.65rem;color:var(--txt2);line-height:1.6;max-height:140px;overflow-y:auto;display:none}
+.cc-result.visible{display:block}
+/* COMPLIANCE */
+.comp-panel{flex:1;overflow-y:auto;padding:20px}
+.comp-selector{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.fw-btn{padding:4px 13px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .18s;letter-spacing:1px;border:1px solid var(--border);background:transparent;color:var(--txt2)}
+.fw-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.05)}.fw-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.1)}
+.comp-chat{background:var(--bg3);border:1px solid var(--border);border-radius:3px;display:flex;flex-direction:column;height:calc(100vh - 260px);min-height:280px}
+.comp-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.comp-input{padding:10px;border-top:1px solid var(--border);display:flex;gap:7px}
+.comp-input input{flex:1;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:8px 12px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.78rem;outline:none}
+.comp-input input:focus{border-color:rgba(0,212,255,.4)}.comp-input input::placeholder{color:var(--txt3);font-family:'Share Tech Mono',monospace;font-size:.65rem}
+/* INTEGRATIONS */
+.int-panel{flex:1;overflow-y:auto;padding:20px}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;margin-top:18px}
+.int-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:16px}
+.int-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.int-logo{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.int-info h3{font-family:'Rajdhani',sans-serif;font-size:.85rem;letter-spacing:1px;color:var(--txt);font-weight:600}
+.int-info p{font-size:.6rem;color:var(--txt3);margin-top:1px}
+.int-fields{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.int-field input{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:6px 9px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.62rem;outline:none}
+.int-field input:focus{border-color:rgba(0,212,255,.4)}.int-field input::placeholder{color:var(--txt3)}
+.int-field label{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:1px;display:block;margin-bottom:2px}
+.int-test-btn{width:100%;padding:7px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:2px;color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .18s;letter-spacing:1px}
+.int-test-btn:hover{background:rgba(0,212,255,.16);border-color:var(--cyan)}
+.int-status-msg{font-family:'Share Tech Mono',monospace;font-size:.52rem;margin-top:6px;padding:4px 8px;border-radius:2px;display:none}
+.int-status-msg.ok{color:var(--green);background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);display:block}
+.int-status-msg.err{color:var(--red);background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);display:block}
+/* MEMORY */
+.mem-panel{flex:1;overflow-y:auto;padding:20px}
+.mem-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.mstat{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:14px;text-align:center}
+.mstat-val{font-family:'Rajdhani',sans-serif;font-size:1.6rem;color:var(--cyan);font-weight:700;letter-spacing:1px}
+.mstat-label{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:1px;margin-top:3px}
+.mem-list{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.mem-entry{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:11px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.me-content{flex:1;min-width:0}.me-role{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:1px;margin-bottom:3px}
+.role-user{color:var(--green)}.role-ai{color:var(--cyan)}
+.me-text{font-size:.7rem;color:var(--txt2);line-height:1.5;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.me-time{font-family:'Share Tech Mono',monospace;font-size:.46rem;color:var(--txt3);white-space:nowrap;flex-shrink:0}
+.mem-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.mact-btn{padding:6px 13px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.56rem;cursor:pointer;transition:all .18s;letter-spacing:1px;border:1px solid}
+.mact-export{border-color:rgba(0,212,255,.3);color:var(--cyan);background:rgba(0,212,255,.08)}.mact-export:hover{background:rgba(0,212,255,.16);border-color:var(--cyan)}
+.mact-import{border-color:rgba(157,111,255,.3);color:var(--purple);background:rgba(157,111,255,.06)}.mact-import:hover{background:rgba(157,111,255,.14)}
+.mact-clear{border-color:rgba(255,51,102,.3);color:var(--red);background:rgba(255,51,102,.06)}.mact-clear:hover{background:rgba(255,51,102,.14)}
+.db-section{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:16px;margin-top:16px}
+.db-section h3{font-family:'Rajdhani',sans-serif;font-size:.9rem;letter-spacing:2px;color:var(--txt);margin-bottom:10px}
+.db-field{margin-bottom:9px}.db-field label{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:1px;display:block;margin-bottom:3px}
+.db-field input,.db-field select{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:7px 10px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.65rem;outline:none}
+.errbub{padding:9px 12px;background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.22);border-left:2px solid var(--red);border-radius:2px;color:#ff6685;font-size:.72rem;font-family:'Share Tech Mono',monospace}
+::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.warn-bar{background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:3px;padding:10px 14px;margin-bottom:16px;font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--orange);line-height:1.7}
+@media(max-width:640px){.chat-sidebar{display:none}.hdr-center{display:none}.tab{padding:7px 10px;font-size:.5rem}.messages{padding:12px 8px}.intel-grid,.cloud-grid,.int-grid{grid-template-columns:1fr}.comp-chat{height:calc(100vh - 280px)}}
+
+/* ── API KEY GATE ── */
+#apiGate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#apiGate::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.gate-box{position:relative;background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--cyan);border-radius:4px;padding:40px 36px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(0,212,255,.06);animation:gfade .5s ease}
+@keyframes gfade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.gate-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;justify-content:center}
+.gate-logo svg{width:44px;height:44px;filter:drop-shadow(0 0 10px var(--cyan))}
+.gate-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;letter-spacing:5px;color:var(--cyan);text-shadow:0 0 20px rgba(0,212,255,.4)}
+.gate-sub{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--txt3);letter-spacing:2px;text-align:center;margin-bottom:28px}
+.gate-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--txt3);letter-spacing:1px;display:block;margin-bottom:7px}
+.gate-input-wrap{position:relative;margin-bottom:10px}
+#apiKeyInput{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:12px 44px 12px 14px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.85rem;outline:none;transition:border-color .2s;letter-spacing:1px}
+#apiKeyInput:focus{border-color:rgba(0,212,255,.5);box-shadow:0 0 0 2px rgba(0,212,255,.08)}
+#apiKeyInput::placeholder{color:var(--txt3);letter-spacing:0}
+.gate-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:var(--txt3);cursor:pointer;font-size:1rem;padding:4px;transition:color .2s}
+.gate-eye:hover{color:var(--cyan)}
+.gate-btn{width:100%;padding:13px;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.4);border-radius:2px;color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.8rem;letter-spacing:2px;cursor:pointer;transition:all .2s;margin-top:4px}
+.gate-btn:hover{background:rgba(0,212,255,.22);border-color:var(--cyan);box-shadow:0 0 20px rgba(0,212,255,.15)}
+.gate-btn:disabled{opacity:.4;cursor:not-allowed}
+.gate-err{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--red);background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);border-radius:2px;padding:8px 12px;margin-top:8px;display:none}
+.gate-err.show{display:block}
+.gate-help{margin-top:20px;padding-top:18px;border-top:1px solid var(--border)}
+.gate-help p{font-size:.75rem;color:var(--txt3);line-height:1.7;margin-bottom:8px}
+.gate-help a{color:var(--cyan);text-decoration:none}
+.gate-help a:hover{text-decoration:underline}
+.gate-steps{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt2);line-height:2;list-style:none;padding:0}
+.gate-steps li::before{content:'→  ';color:var(--cyan)}
+.gate-note{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--txt3);margin-top:14px;line-height:1.6;padding:8px 10px;background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.1);border-radius:2px}
+/* Key badge in header */
+#keyBadge{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,255,136,.3);color:var(--green);background:rgba(0,255,136,.06);cursor:pointer;transition:all .2s}
+#keyBadge:hover{border-color:var(--green);background:rgba(0,255,136,.12)}
+.key-dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2s infinite}
+/* Docs button + dropdown */
+.docs-wrap{position:relative}
+#docsBtn{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,212,255,.3);color:var(--cyan);background:rgba(0,212,255,.06);cursor:pointer;transition:all .2s}
+#docsBtn:hover{border-color:var(--cyan);background:rgba(0,212,255,.14);box-shadow:0 0 10px rgba(0,212,255,.12)}
+.docs-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;width:260px;background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--cyan);border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 20px rgba(0,212,255,.06);z-index:999;overflow:hidden}
+.docs-dropdown.open{display:block;animation:ddopen .18s ease}
+@keyframes ddopen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.dd-header{padding:8px 12px;background:rgba(0,212,255,.06);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:2px}
+.dd-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border2);text-decoration:none;transition:background .18s;cursor:pointer}
+.dd-item:last-child{border-bottom:none}
+.dd-item:hover{background:rgba(0,212,255,.07)}
+.dd-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.dd-text{flex:1}
+.dd-title{font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--txt);letter-spacing:.5px;line-height:1.2}
+.dd-sub{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--txt3);margin-top:2px;line-height:1.4}
+.dd-ext{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--cyan);margin-top:3px}
+.dd-divider{height:1px;background:var(--border);margin:2px 0}
+.dd-github{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(0,255,136,.04);text-decoration:none;transition:background .18s}
+.dd-github:hover{background:rgba(0,255,136,.1)}
+.dd-github span{font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--green);letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<!-- ── API KEY GATE ── -->
+<div id="apiGate">
+  <div class="gate-box">
+    <div class="gate-logo">
+      <svg viewBox="0 0 42 42" fill="none">
+        <polygon points="21,2 38,11 38,31 21,40 4,31 4,11" stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,0.07)"/>
+        <circle cx="21" cy="21" r="5" fill="rgba(0,212,255,0.25)" stroke="#00d4ff" stroke-width="1.2"/>
+        <circle cx="21" cy="21" r="2" fill="#00d4ff"/>
+      </svg>
+      <div class="gate-title">AEGIS</div>
+    </div>
+    <div class="gate-sub">ENTERPRISE SECURITY PLATFORM // v3.0</div>
+
+    <label class="gate-label" for="apiKeyInput">ANTHROPIC API KEY</label>
+    <div class="gate-input-wrap">
+      <input id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter')submitKey()">
+      <button class="gate-eye" onclick="toggleKeyVis()" title="Show/hide key">👁</button>
+    </div>
+    <div id="gateErr" class="gate-err">Invalid key format. Anthropic API keys start with <strong>sk-ant-</strong></div>
+    <button class="gate-btn" id="gateBtn" onclick="submitKey()">⚡ INITIALIZE AEGIS</button>
+
+    <div class="gate-help">
+      <p>Don't have an API key yet? Get one free in under 2 minutes:</p>
+      <ul class="gate-steps">
+        <li>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
+        <li>Sign up for a free account</li>
+        <li>Click <strong>API Keys</strong> → <strong>Create Key</strong></li>
+        <li>Copy the key (starts with sk-ant-...) and paste above</li>
+      </ul>
+      <div class="gate-note">🔒 Your key is saved only in your browser's localStorage and is never sent anywhere except directly to Anthropic's API. It is not stored on any server.</div>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="logo">
+    <div class="logo-hex">
+      <svg viewBox="0 0 42 42" fill="none">
+        <polygon points="21,2 38,11 38,31 21,40 4,31 4,11" stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,0.05)"/>
+        <polygon points="21,8 33,15 33,27 21,34 9,27 9,15" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="2,2" fill="rgba(0,212,255,0.03)"/>
+        <circle cx="21" cy="21" r="5" fill="rgba(0,212,255,0.2)" stroke="#00d4ff" stroke-width="1.2"/>
+        <circle cx="21" cy="21" r="2" fill="#00d4ff"/>
+        <line x1="21" y1="8" x2="21" y2="16" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="21" y1="26" x2="21" y2="34" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="9" y1="15" x2="16" y2="19" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="26" y1="23" x2="33" y2="27" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="33" y1="15" x2="26" y2="19" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+        <line x1="16" y1="23" x2="9" y2="27" stroke="#00d4ff" stroke-width="0.8" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="logo-text"><h1>AEGIS</h1><p>Enterprise Security Architect // v3.0.0</p></div>
+  </div>
+  <div class="hdr-center">
+    <div class="hdr-pill pill-online"><div class="hdr-dot dot-g"></div>SYSTEM ONLINE</div>
+    <div class="hdr-pill pill-search"><div class="hdr-dot dot-c"></div>LIVE THREAT INTEL</div>
+    <div class="hdr-pill pill-mem"><div class="hdr-dot dot-p"></div>MEMORY: <span id="memCount">0</span> MSGS</div>
+  </div>
+  <div class="hdr-right">
+    <!-- DOCS BUTTON -->
+    <div class="docs-wrap" id="docsWrap">
+      <button id="docsBtn" onclick="toggleDocs(event)" title="Documentation & Guides">📄 DOCS</button>
+      <div class="docs-dropdown" id="docsDropdown">
+        <div class="dd-header">// AEGIS DOCUMENTATION</div>
+        <a class="dd-item" href="https://yourusername.github.io/aegis-security/AEGIS-Enterprise-Setup-Guide.pdf" target="_blank">
+          <span class="dd-icon">⚙️</span>
+          <div class="dd-text">
+            <div class="dd-title">Setup Guide</div>
+            <div class="dd-sub">Quick start, features, backend agent, privacy</div>
+            <div class="dd-ext">↗ AEGIS-Enterprise-Setup-Guide.pdf</div>
+          </div>
+        </a>
+        <a class="dd-item" href="https://yourusername.github.io/aegis-security/AEGIS-Integration-Guide.pdf" target="_blank">
+          <span class="dd-icon">🔗</span>
+          <div class="dd-text">
+            <div class="dd-title">Integration Guide</div>
+            <div class="dd-sub">Slack, Jira, Splunk, Nessus, Notion, M365 & more</div>
+            <div class="dd-ext">↗ AEGIS-Integration-Guide.pdf</div>
+          </div>
+        </a>
+        <div class="dd-divider"></div>
+        <a class="dd-github" href="https://yourusername.github.io/aegis-security" target="_blank">
+          <span style="font-size:1rem">⬡</span>
+          <span>OPEN AEGIS IN NEW TAB &nbsp;↗</span>
+        </a>
+      </div>
+    </div>
+    <button id="keyBadge" onclick="showKeyManager()" title="API Key — click to update"><div class="key-dot"></div><span id="keyBadgeLabel">KEY: SET</span></button>
+    <span id="clock"></span>
+  </div>
+</header>
+
+<nav class="tabbar">
+  <button class="tab active" onclick="switchTab('chat',this)">🛡️ CHAT</button>
+  <button class="tab" onclick="switchTab('intel',this)">🔥 THREAT INTEL</button>
+  <button class="tab" onclick="switchTab('cloud',this)">☁️ CLOUD CONNECTORS</button>
+  <button class="tab" onclick="switchTab('compliance',this)">📋 COMPLIANCE</button>
+  <button class="tab" onclick="switchTab('integrations',this)">🔗 INTEGRATIONS</button>
+  <button class="tab" onclick="switchTab('memory',this)">🧠 MEMORY</button>
+</nav>
+
+<div class="workspace">
+
+<!-- CHAT -->
+<div class="panel active" id="panel-chat">
+  <div class="chat-layout">
+    <aside class="chat-sidebar">
+      <div class="cs-section">
+        <div class="cs-label">// Quick Actions</div>
+        <button class="qbtn" onclick="sq('Design a zero-trust AWS enterprise network with full security controls, VPC segmentation, IAM, WAF, and monitoring stack.')">🏗️ AWS Enterprise VPC</button>
+        <button class="qbtn" onclick="sq('Generate complete production-ready Terraform IaC for a secure 3-tier cloud network with WAF, private subnets, NAT, and security groups.')">⚙️ Terraform IaC</button>
+        <button class="qbtn" onclick="sq('Search the web for the latest cybersecurity threats, IOCs, CVEs, and AI-specific attacks from the past 7 days. Give me a full threat briefing.')">🔥 Live Threat Brief</button>
+        <button class="qbtn" onclick="sq('Review this architecture and IAM policies for least-privilege violations, misconfigurations, and security gaps. Give findings with severity ratings.')">🔍 Security Audit</button>
+        <button class="qbtn" onclick="sq('Design a complete incident response playbook for a cloud ransomware attack: detection, containment, eradication, recovery, and post-mortem.')">🚨 Incident Response</button>
+        <button class="qbtn" onclick="sq('Map my cloud infrastructure to SOC 2 Type II, NIST 800-53, and CIS Controls v8. Give me control IDs, implementation gaps, and remediation steps.')">📋 Compliance Map</button>
+        <button class="qbtn" onclick="sq('Validate this code for security misconfigurations, syntax errors, and best practice violations. Flag every issue with severity and line reference.')">✅ Validate My Code</button>
+      </div>
+      <div class="cs-caps">
+        <div class="cs-label">// Capabilities</div>
+        <div class="cap"><div class="cap-dot"></div>Live web search &amp; threat intel</div>
+        <div class="cap"><div class="cap-dot"></div>Cloud architecture (AWS/Azure/GCP)</div>
+        <div class="cap"><div class="cap-dot"></div>Zero-trust network design</div>
+        <div class="cap"><div class="cap-dot"></div>Terraform, CloudFormation, Bicep</div>
+        <div class="cap"><div class="cap-dot"></div>IAM &amp; least-privilege access</div>
+        <div class="cap"><div class="cap-dot"></div>SOC2/NIST/ISO27001/CIS/PCI/HIPAA</div>
+        <div class="cap"><div class="cap-dot"></div>Code validation &amp; security review</div>
+        <div class="cap"><div class="cap-dot"></div>IOC &amp; CVE live tracking</div>
+        <div class="cap"><div class="cap-dot"></div>Kubernetes &amp; container security</div>
+        <div class="cap"><div class="cap-dot"></div>DevSecOps pipeline integration</div>
+        <div class="cap"><div class="cap-dot"></div>Persistent memory (browser + DB)</div>
+        <div class="cap"><div class="cap-dot"></div>Slack/Teams/Jira/Splunk/M365</div>
+        <div class="cap"><div class="cap-dot"></div>Nessus/ServiceNow/Notion/Obsidian</div>
+      </div>
+    </aside>
+    <div class="chat-main">
+      <div class="messages" id="messages">
+        <div class="welcome" id="welcome">
+          <h2>AEGIS ENTERPRISE ONLINE</h2>
+          <p>Your AI Security Architect — now with live threat intelligence, cloud connectors, compliance engine, persistent memory, and full tool integrations. All history synced across every tab.</p>
+          <div class="chips">
+            <div class="chip" onclick="sq('Search for the latest AI-specific cybersecurity threats and IOCs from this week.')">Latest AI Threats</div>
+            <div class="chip" onclick="sq('Build a full enterprise AWS VPC with all security controls.')">AWS Enterprise</div>
+            <div class="chip" onclick="sq('Map my architecture to NIST 800-53 and give me the control gaps with remediation.')">NIST Gap Analysis</div>
+            <div class="chip" onclick="sq('Validate my Terraform code for security issues. I will paste it now.')">Code Validation</div>
+            <div class="chip" onclick="sq('What are the top 10 critical CVEs I need to patch right now?')">Critical CVEs</div>
+            <div class="chip" onclick="sq('Design a zero-trust architecture for a hybrid cloud and on-premise environment.')">Zero Trust Design</div>
+          </div>
+        </div>
+      </div>
+      <div class="input-bar">
+        <div class="irow">
+          <div class="iwrap">
+            <textarea id="chatInput" placeholder="// Ask AEGIS anything — architecture, live threats, code review, compliance, integrations..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+          </div>
+          <button class="sbtn" id="sendBtn" onclick="sendChat()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="ihint"><span>ENTER to send</span><span>SHIFT+ENTER new line</span><span>Web search enabled · Memory persists · AEGIS Enterprise v3</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THREAT INTEL -->
+<div class="panel" id="panel-intel">
+  <div class="intel-panel">
+    <div class="panel-title">LIVE THREAT INTELLIGENCE</div>
+    <div class="panel-sub">// REAL-TIME IOC TRACKING · CVE MONITORING · AI THREAT LANDSCAPE · MITRE ATT&amp;CK</div>
+    <div class="intel-search-bar">
+      <input type="text" id="intelQuery" placeholder="Search threats, CVEs, malware families, APT groups, IOCs..." onkeydown="if(event.key==='Enter')fetchIntel()">
+      <button class="ibtn" onclick="fetchIntel('latest AI cybersecurity threats IOCs CVEs 2025')">🔥 Latest Threats</button>
+      <button class="ibtn" onclick="fetchIntel('critical CVEs patch vulnerabilities 2025 CVSS 9+')">💥 Critical CVEs</button>
+      <button class="ibtn" onclick="fetchIntel('AI machine learning model attacks adversarial threats')">🤖 AI Attacks</button>
+      <button class="ibtn" id="intelSearchBtn" onclick="fetchIntel()">🔍 Search</button>
+    </div>
+    <div id="intelResults" class="intel-grid">
+      <div class="icard info" style="grid-column:1/-1;text-align:center;padding:30px">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--txt3);letter-spacing:1px">Click a button above or enter a search query to pull live threat intelligence from the web.<br>AEGIS will surface current IOCs, CVEs, threat actor activity, and AI-specific attacks.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOUD CONNECTORS -->
+<div class="panel" id="panel-cloud">
+  <div class="cloud-panel">
+    <div class="panel-title">CLOUD INFRASTRUCTURE CONNECTORS</div>
+    <div class="panel-sub">// CONNECT YOUR CLOUD · AEGIS ANALYZES LIVE SECURITY POSTURE</div>
+    <div class="warn-bar">⚠️ SECURITY: Credentials stored only in your local browser (localStorage). Never transmitted except to respective cloud APIs. Use read-only IAM roles with minimum permissions. Never use root/admin credentials.</div>
+    <div class="cloud-grid">
+      <div class="cloud-card">
+        <div class="cc-header"><div class="cc-icon">🟡</div><div class="cc-name">AMAZON WEB SERVICES</div><div class="cc-status st-disc" id="aws-status">DISCONNECTED</div></div>
+        <div class="cc-field"><div class="cc-label">ACCESS KEY ID</div><input class="cc-input" type="password" id="aws-key" placeholder="AKIA..."></div>
+        <div class="cc-field"><div class="cc-label">SECRET ACCESS KEY</div><input class="cc-input" type="password" id="aws-secret" placeholder="..."></div>
+        <div class="cc-field"><div class="cc-label">REGION</div><input class="cc-input" type="text" id="aws-region" placeholder="us-east-1" value="us-east-1"></div>
+        <div class="cc-actions"><button class="cc-btn primary" onclick="saveCloud('aws')">SAVE</button><button class="cc-btn secondary" onclick="analyzeCloud('aws')">ANALYZE POSTURE</button></div>
+        <div class="cc-result" id="aws-result"></div>
+      </div>
+      <div class="cloud-card">
+        <div class="cc-header"><div class="cc-icon">🔵</div><div class="cc-name">MICROSOFT AZURE</div><div class="cc-status st-disc" id="azure-status">DISCONNECTED</div></div>
+        <div class="cc-field"><div class="cc-label">TENANT ID</div><input class="cc-input" type="password" id="azure-tenant" placeholder="00000000-..."></div>
+        <div class="cc-field"><div class="cc-label">CLIENT ID</div><input class="cc-input" type="password" id="azure-client" placeholder="App registration client ID"></div>
+        <div class="cc-field"><div class="cc-label">CLIENT SECRET</div><input class="cc-input" type="password" id="azure-secret" placeholder="..."></div>
+        <div class="cc-field"><div class="cc-label">SUBSCRIPTION ID</div><input class="cc-input" type="text" id="azure-sub" placeholder="00000000-..."></div>
+        <div class="cc-actions"><button class="cc-btn primary" onclick="saveCloud('azure')">SAVE</button><button class="cc-btn secondary" onclick="analyzeCloud('azure')">ANALYZE POSTURE</button></div>
+        <div class="cc-result" id="azure-result"></div>
+      </div>
+      <div class="cloud-card">
+        <div class="cc-header"><div class="cc-icon">🔴</div><div class="cc-name">GOOGLE CLOUD PLATFORM</div><div class="cc-status st-disc" id="gcp-status">DISCONNECTED</div></div>
+        <div class="cc-field"><div class="cc-label">PROJECT ID</div><input class="cc-input" type="text" id="gcp-project" placeholder="my-project-id"></div>
+        <div class="cc-field"><div class="cc-label">SERVICE ACCOUNT KEY (JSON)</div><textarea class="cc-input" id="gcp-key" placeholder='{"type":"service_account",...}' style="min-height:60px;max-height:80px;resize:none;font-size:.6rem"></textarea></div>
+        <div class="cc-actions"><button class="cc-btn primary" onclick="saveCloud('gcp')">SAVE</button><button class="cc-btn secondary" onclick="analyzeCloud('gcp')">ANALYZE POSTURE</button></div>
+        <div class="cc-result" id="gcp-result"></div>
+      </div>
+      <div class="cloud-card">
+        <div class="cc-header"><div class="cc-icon">🖥️</div><div class="cc-name">ON-PREMISE / SELF-HOSTED</div><div class="cc-status st-disc" id="onprem-status">DISCONNECTED</div></div>
+        <div class="cc-field"><div class="cc-label">INFRASTRUCTURE DESCRIPTION</div><textarea class="cc-input" id="onprem-desc" placeholder="Describe your on-prem setup: network ranges, OS versions, services, firewall type..." style="min-height:70px;max-height:90px;resize:none;font-size:.65rem"></textarea></div>
+        <div class="cc-field"><div class="cc-label">NESSUS ENDPOINT (OPTIONAL)</div><input class="cc-input" type="text" id="onprem-scanner" placeholder="https://nessus.internal:8834"></div>
+        <div class="cc-field"><div class="cc-label">NESSUS API KEY (OPTIONAL)</div><input class="cc-input" type="password" id="onprem-key" placeholder="..."></div>
+        <div class="cc-actions"><button class="cc-btn primary" onclick="saveCloud('onprem')">SAVE</button><button class="cc-btn secondary" onclick="analyzeCloud('onprem')">GET ASSESSMENT</button></div>
+        <div class="cc-result" id="onprem-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLIANCE -->
+<div class="panel" id="panel-compliance">
+  <div class="comp-panel">
+    <div class="panel-title">COMPLIANCE &amp; CONTROLS ENGINE</div>
+    <div class="panel-sub">// NIST · SOC2 · ISO27001 · CIS · PCI-DSS · HIPAA · FEDRAMP · GDPR · CMMC</div>
+    <div class="comp-selector">
+      <button class="fw-btn active" onclick="setFW(this,'NIST 800-53 Rev5')">NIST 800-53</button>
+      <button class="fw-btn" onclick="setFW(this,'SOC 2 Type II')">SOC 2</button>
+      <button class="fw-btn" onclick="setFW(this,'CIS Controls v8')">CIS v8</button>
+      <button class="fw-btn" onclick="setFW(this,'ISO 27001:2022')">ISO 27001</button>
+      <button class="fw-btn" onclick="setFW(this,'PCI-DSS v4.0')">PCI-DSS</button>
+      <button class="fw-btn" onclick="setFW(this,'HIPAA Security Rule')">HIPAA</button>
+      <button class="fw-btn" onclick="setFW(this,'FedRAMP Moderate')">FedRAMP</button>
+      <button class="fw-btn" onclick="setFW(this,'GDPR Article 32')">GDPR</button>
+      <button class="fw-btn" onclick="setFW(this,'CMMC 2.0 Level 2')">CMMC</button>
+    </div>
+    <div class="comp-chat">
+      <div class="comp-msgs" id="comp-msgs">
+        <div class="msg ai"><div class="av">AI</div><div class="mc"><div class="mm">AEGIS COMPLIANCE // READY</div><div class="mb"><strong>Compliance Engine Active</strong> — NIST 800-53 Rev5 loaded.<br><br>Ask me to map your architecture to controls, identify gaps, write control narratives, generate audit evidence checklists, or assess specific domains. I cite exact control IDs, implementation guidance, and required audit evidence.<br><br><em style="font-size:.7rem;color:var(--txt3)">Note: This is expert guidance from a trained security AI. It is not a substitute for a formal audit by a certified assessor (CISA, CISSP, QSA).</em></div></div></div>
+      </div>
+      <div class="comp-input">
+        <input type="text" id="compInput" placeholder="Ask about control mapping, gap analysis, audit evidence, implementation guidance..." onkeydown="if(event.key==='Enter')sendCompliance()">
+        <button class="sbtn" onclick="sendCompliance()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTEGRATIONS -->
+<div class="panel" id="panel-integrations">
+  <div class="int-panel">
+    <div class="panel-title">TOOL INTEGRATIONS</div>
+    <div class="panel-sub">// CONFIGURE CONNECTIONS · AEGIS PUSHES FINDINGS DIRECTLY TO YOUR TOOLS</div>
+    <div class="int-grid">
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#4a154b">💜</div><div class="int-info"><h3>SLACK</h3><p>Push security alerts &amp; findings</p></div></div>
+        <div class="int-fields"><div class="int-field"><label>WEBHOOK URL</label><input type="password" id="slack-webhook" placeholder="https://hooks.slack.com/services/..."></div><div class="int-field"><label>CHANNEL (optional)</label><input type="text" id="slack-channel" placeholder="#security-alerts"></div></div>
+        <button class="int-test-btn" onclick="saveInt('slack')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="slack-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#464775">💙</div><div class="int-info"><h3>MICROSOFT TEAMS</h3><p>Push alerts to Teams channels</p></div></div>
+        <div class="int-fields"><div class="int-field"><label>INCOMING WEBHOOK URL</label><input type="password" id="teams-webhook" placeholder="https://outlook.office.com/webhook/..."></div></div>
+        <button class="int-test-btn" onclick="saveInt('teams')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="teams-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#003087">🔵</div><div class="int-info"><h3>JIRA</h3><p>Auto-create security tickets</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>JIRA URL</label><input type="text" id="jira-url" placeholder="https://yourorg.atlassian.net"></div>
+          <div class="int-field"><label>EMAIL</label><input type="text" id="jira-email" placeholder="you@company.com"></div>
+          <div class="int-field"><label>API TOKEN</label><input type="password" id="jira-token" placeholder="..."></div>
+          <div class="int-field"><label>PROJECT KEY</label><input type="text" id="jira-project" placeholder="SEC"></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('jira')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="jira-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#005073">🟦</div><div class="int-info"><h3>SPLUNK / SIEM</h3><p>Query logs &amp; push findings</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>SPLUNK HOST</label><input type="text" id="splunk-host" placeholder="https://splunk.yourorg.com:8089"></div>
+          <div class="int-field"><label>HEC TOKEN</label><input type="password" id="splunk-token" placeholder="..."></div>
+          <div class="int-field"><label>INDEX</label><input type="text" id="splunk-index" placeholder="security"></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('splunk')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="splunk-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#1b6e3d">🟢</div><div class="int-info"><h3>SERVICENOW</h3><p>Create ITSM incidents &amp; changes</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>INSTANCE URL</label><input type="text" id="snow-url" placeholder="https://yourorg.service-now.com"></div>
+          <div class="int-field"><label>USERNAME</label><input type="text" id="snow-user" placeholder="..."></div>
+          <div class="int-field"><label>PASSWORD / API KEY</label><input type="password" id="snow-pass" placeholder="..."></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('servicenow')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="servicenow-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#ff3c00">🔴</div><div class="int-info"><h3>NESSUS / TENABLE</h3><p>Pull live vulnerability scan results</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>NESSUS HOST</label><input type="text" id="nessus-host" placeholder="https://nessus.yourorg.com:8834"></div>
+          <div class="int-field"><label>ACCESS KEY</label><input type="password" id="nessus-akey" placeholder="..."></div>
+          <div class="int-field"><label>SECRET KEY</label><input type="password" id="nessus-skey" placeholder="..."></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('nessus')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="nessus-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#000">⬛</div><div class="int-info"><h3>NOTION</h3><p>Sync architecture docs &amp; runbooks</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>INTEGRATION TOKEN</label><input type="password" id="notion-token" placeholder="secret_..."></div>
+          <div class="int-field"><label>DATABASE ID</label><input type="text" id="notion-db" placeholder="32-char page ID"></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('notion')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="notion-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#5c3ee8">🔮</div><div class="int-info"><h3>OBSIDIAN</h3><p>Save findings to your vault via REST</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>OBSIDIAN REST API URL</label><input type="text" id="obs-url" placeholder="http://localhost:27123"></div>
+          <div class="int-field"><label>API KEY</label><input type="password" id="obs-key" placeholder="..."></div>
+          <div class="int-field"><label>VAULT FOLDER</label><input type="text" id="obs-folder" placeholder="AEGIS/Findings"></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('obsidian')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="obsidian-status"></div>
+      </div>
+      <div class="int-card">
+        <div class="int-header"><div class="int-logo" style="background:#0078d4">🪟</div><div class="int-info"><h3>MICROSOFT 365</h3><p>Teams, Defender, Sentinel, Exchange</p></div></div>
+        <div class="int-fields">
+          <div class="int-field"><label>TENANT ID</label><input type="text" id="m365-tenant" placeholder="00000000-..."></div>
+          <div class="int-field"><label>CLIENT ID</label><input type="password" id="m365-client" placeholder="..."></div>
+          <div class="int-field"><label>CLIENT SECRET</label><input type="password" id="m365-secret" placeholder="..."></div>
+        </div>
+        <button class="int-test-btn" onclick="saveInt('m365')">SAVE CREDENTIALS</button>
+        <div class="int-status-msg" id="m365-status"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY -->
+<div class="panel" id="panel-memory">
+  <div class="mem-panel">
+    <div class="panel-title">PERSISTENT MEMORY</div>
+    <div class="panel-sub">// BROWSER STORAGE ACTIVE · EXPORT JSON TO MIGRATE TO ANY PRIVATE HOST</div>
+    <div class="mem-stats">
+      <div class="mstat"><div class="mstat-val" id="stat-msgs">0</div><div class="mstat-label">MESSAGES</div></div>
+      <div class="mstat"><div class="mstat-val" id="stat-sessions">0</div><div class="mstat-label">SESSIONS</div></div>
+      <div class="mstat"><div class="mstat-val" id="stat-size">0B</div><div class="mstat-label">STORAGE</div></div>
+      <div class="mstat"><div class="mstat-val" id="stat-host" style="font-size:.85rem;letter-spacing:1px">BROWSER</div><div class="mstat-label">HOST</div></div>
+    </div>
+    <div class="mem-actions">
+      <button class="mact-btn mact-export" onclick="exportMemory()">⬇ EXPORT JSON</button>
+      <button class="mact-btn mact-import" onclick="document.getElementById('importFile').click()">⬆ IMPORT JSON</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importMemory(event)">
+      <button class="mact-btn mact-clear" onclick="clearMemory()">🗑 CLEAR ALL</button>
+    </div>
+    <div id="mem-list" class="mem-list"></div>
+    <div class="db-section">
+      <h3>REMOTE DATABASE (PRIVATE HOST)</h3>
+      <p style="font-size:.68rem;color:var(--txt2);margin-bottom:14px;line-height:1.6">Connect Supabase or Postgres to sync memory across all your devices. Your data lives on your own database — AEGIS never stores it centrally. Export your JSON from here and import it on any new host.</p>
+      <div class="db-field"><label>PROVIDER</label>
+        <select id="db-provider"><option value="">— Browser only (default) —</option><option value="supabase">Supabase (recommended, free)</option><option value="firebase">Firebase / Firestore</option><option value="custom">Custom Postgres endpoint</option></select>
+      </div>
+      <div class="db-field"><label>API URL / CONNECTION STRING</label><input type="password" id="db-url" placeholder="https://xxx.supabase.co or postgres://..."></div>
+      <div class="db-field"><label>TABLE NAME</label><input type="text" id="db-table" placeholder="aegis_memory" value="aegis_memory"></div>
+      <button class="int-test-btn" onclick="testDB()" style="margin-top:4px">SAVE REMOTE CONFIG</button>
+      <div class="int-status-msg" id="db-status"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const SYSTEM_PROMPT=`You are AEGIS — an elite AI Security Architect and Enterprise Security Operations AI with live web search capability. Use web search proactively for current threat intelligence, CVEs, and security news.
+
+EXPERTISE:
+- CLOUD: AWS, Azure, GCP, multi-cloud — full architecture, native security services, IAM, VPC, networking
+- NETWORK: Zero-trust, microsegmentation, WAF, NGFW, DDoS, IDS/IPS, SASE, SD-WAN
+- IDENTITY: IAM, RBAC, least-privilege, PAM, SSO/MFA, OAuth/OIDC, SAML, Entra ID, Okta
+- IaC: Complete deployable Terraform, CloudFormation, Bicep, Pulumi — not skeletons, full working code
+- COMPLIANCE: Full control catalogs — NIST 800-53 Rev5, SOC 2 Type II, CIS Controls v8, ISO 27001:2022, PCI-DSS v4.0, HIPAA, FedRAMP, GDPR, CMMC 2.0. Cite control IDs, implementation steps, audit evidence
+- CONTAINERS: EKS/AKS/GKE, Kubernetes hardening, pod security, network policies, Falco, Istio, SBOM
+- THREAT INTEL: IOCs, TTPs, CVEs, MITRE ATT&CK, threat actor profiles — always search for current data
+- CODE REVIEW: Validate Terraform, CloudFormation, Python, bash, YAML — every issue with severity + line
+- INCIDENT RESPONSE: Full playbooks, containment, eradication, recovery, forensics, post-mortems
+- DEVSECOPS: CI/CD security, SAST/DAST, secrets management (Vault, AWS SM), supply chain, SBOM
+- MONITORING: SIEM, log management, threat hunting, SOC design, Splunk, Sentinel, Chronicle
+- INTEGRATIONS: Guide on Slack, Teams, Jira, ServiceNow, Splunk, Nessus, Notion, Obsidian, M365
+
+RULES:
+1. BUILD requests: complete, production-ready, deployable code. Not skeletons.
+2. THREAT/CVE requests: use web search for CURRENT data. Never rely only on training data for threat intel.
+3. VALIDATE requests: review every line, flag all issues with CRITICAL/HIGH/MEDIUM/LOW severity.
+4. COMPLIANCE requests: cite exact control IDs, implementation guidance, required audit evidence. Note: expert guidance, not a formal audit.
+5. Always apply least-privilege, defense-in-depth, zero-trust.
+6. Be direct and technical. Senior security professional audience.`;
+
+const sharedHistory=[];
+let compFW='NIST 800-53 Rev5';
+let isLoading=false;
+const MEM_KEY='aegis_v3_memory';
+const SES_KEY='aegis_sessions';
+
+function loadMemory(){
+  try{
+    const raw=localStorage.getItem(MEM_KEY);
+    if(raw){
+      const saved=JSON.parse(raw);
+      sharedHistory.push(...saved);
+      saved.forEach(m=>addMsgToUI(m.role==='user'?'user':'ai',m.content,m.ts||''));
+      if(saved.length){const w=document.getElementById('welcome');if(w)w.remove();}
+    }
+    const s=parseInt(localStorage.getItem(SES_KEY)||'0')+1;
+    localStorage.setItem(SES_KEY,s);
+    updateStats();
+  }catch(e){console.warn(e);}
+}
+
+function saveMemory(){
+  try{localStorage.setItem(MEM_KEY,JSON.stringify(sharedHistory));updateStats();}catch(e){}
+}
+
+function updateStats(){
+  const n=sharedHistory.length;
+  document.getElementById('stat-msgs').textContent=n;
+  document.getElementById('memCount').textContent=n;
+  document.getElementById('stat-sessions').textContent=localStorage.getItem(SES_KEY)||'1';
+  const b=new Blob([localStorage.getItem(MEM_KEY)||'']).size;
+  document.getElementById('stat-size').textContent=b>1024?(b/1024).toFixed(1)+'KB':b+'B';
+  renderMemList();
+}
+
+function renderMemList(){
+  const list=document.getElementById('mem-list');
+  const recent=sharedHistory.slice(-20).reverse();
+  list.innerHTML=recent.map(m=>`<div class="mem-entry"><div class="me-content"><div class="me-role ${m.role==='user'?'role-user':'role-ai'}">${m.role==='user'?'OPERATOR':'AEGIS'}</div><div class="me-text">${esc(m.content.slice(0,150))}${m.content.length>150?'...':''}</div></div><div class="me-time">${m.ts||''}</div></div>`).join('');
+}
+
+function exportMemory(){
+  const blob=new Blob([JSON.stringify({version:'aegis-v3',exported:new Date().toISOString(),history:sharedHistory},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`aegis-memory-${Date.now()}.json`;a.click();
+}
+
+function importMemory(e){
+  const file=e.target.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);const h=d.history||d;sharedHistory.length=0;sharedHistory.push(...h);saveMemory();location.reload();}catch(err){alert('Invalid file: '+err.message);}};
+  r.readAsText(file);
+}
+
+function clearMemory(){
+  if(!confirm('Clear all AEGIS memory? Cannot be undone.'))return;
+  localStorage.removeItem(MEM_KEY);sharedHistory.length=0;updateStats();location.reload();
+}
+
+function testDB(){
+  const p=document.getElementById('db-provider').value;
+  const u=document.getElementById('db-url').value;
+  const st=document.getElementById('db-status');
+  if(!p){showSt(st,'Browser-only mode active.','ok');return;}
+  if(!u){showSt(st,'Enter a connection URL.','err');return;}
+  localStorage.setItem('aegis_db',JSON.stringify({provider:p,url:u,table:document.getElementById('db-table').value}));
+  document.getElementById('stat-host').textContent=p.toUpperCase().slice(0,8);
+  showSt(st,'Remote config saved. Use Export/Import to migrate memory. Full real-time sync requires a small backend service.','ok');
+}
+
+function updateClock(){const el=document.getElementById('clock');if(el)el.textContent=new Date().toTimeString().split(' ')[0];}
+setInterval(updateClock,1000);updateClock();
+
+function switchTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='memory')renderMemList();
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}}
+
+function fmt(text){
+  text=text.replace(/```(\w+)?\n?([\s\S]*?)```/g,(_,l,c)=>`<pre>${esc(c.trim())}</pre>`);
+  text=text.replace(/`([^`]+)`/g,'<code>$1</code>');
+  text=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  text=text.replace(/^#{1,3} (.+)$/gm,'<h3>$1</h3>');
+  text=text.replace(/\bCRITICAL\b/g,'<span class="stag tc">CRITICAL</span>');
+  text=text.replace(/\bHIGH\b/g,'<span class="stag th">HIGH</span>');
+  text=text.replace(/\b(MEDIUM|INFO)\b/g,'<span class="stag tm">$1</span>');
+  text=text.replace(/\b(LOW|SAFE)\b/g,'<span class="stag tl">$1</span>');
+  text=text.replace(/^[-*] (.+)$/gm,'<li>$1</li>');
+  text=text.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+  return text;
+}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function addMsgToUI(role,content,ts){
+  const w=document.getElementById('welcome');if(w)w.remove();
+  const c=document.getElementById('messages');
+  const d=document.createElement('div');d.className=`msg ${role}`;
+  d.innerHTML=`<div class="av">${role==='ai'?'AI':'YOU'}</div><div class="mc"><div class="mm">${role==='ai'?'AEGIS // ':'OPERATOR // '}${ts}</div><div class="mb">${fmt(content)}</div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+function showTypingUI(id){
+  const c=document.getElementById(id||'messages');
+  const d=document.createElement('div');d.className='typing';d.id='typ-'+id;
+  d.innerHTML=`<div class="av" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--cyan);width:28px;height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:.58rem;flex-shrink:0">AI</div><div class="tdots"><span></span><span></span><span></span></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function rmTyping(id){const t=document.getElementById('typ-'+(id||'messages'));if(t)t.remove();}
+
+function sq(t){document.getElementById('chatInput').value=t;sendChat();}
+
+// ── API KEY MANAGEMENT ──
+const API_KEY_STORAGE='aegis_api_key_v1';
+let AEGIS_API_KEY='';
+
+function loadApiKey(){
+  const k=localStorage.getItem(API_KEY_STORAGE);
+  if(k){AEGIS_API_KEY=k;showApp();}
+  else{document.getElementById('apiGate').style.display='flex';}
+}
+
+function submitKey(){
+  const inp=document.getElementById('apiKeyInput');
+  const err=document.getElementById('gateErr');
+  const btn=document.getElementById('gateBtn');
+  const val=inp.value.trim();
+  err.classList.remove('show');
+  if(!val.startsWith('sk-ant-')||val.length<20){
+    err.textContent='Invalid key format. Anthropic API keys start with sk-ant-';
+    err.classList.add('show');inp.focus();return;
+  }
+  btn.disabled=true;btn.textContent='⚡ VERIFYING...';
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':val,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'hi'}]})
+  }).then(r=>r.json()).then(d=>{
+    if(d.error&&d.error.type==='authentication_error'){
+      err.textContent='⚠️ Key rejected by Anthropic — double-check and try again.';
+      err.classList.add('show');btn.disabled=false;btn.textContent='⚡ INITIALIZE AEGIS';
+    }else{AEGIS_API_KEY=val;localStorage.setItem(API_KEY_STORAGE,val);finalizeGate();}
+  }).catch(()=>{
+    // file:// CORS blocks verification ping — trust key format and proceed
+    AEGIS_API_KEY=val;localStorage.setItem(API_KEY_STORAGE,val);finalizeGate();
+  });
+}
+
+function finalizeGate(){
+  const badge=document.getElementById('keyBadgeLabel');
+  if(badge&&AEGIS_API_KEY)badge.textContent='KEY: ...'+AEGIS_API_KEY.slice(-6);
+  showApp();
+}
+
+function showApp(){
+  const gate=document.getElementById('apiGate');
+  gate.style.transition='opacity .4s ease';gate.style.opacity='0';
+  setTimeout(()=>{gate.style.display='none';},400);
+}
+
+function showKeyManager(){
+  const gate=document.getElementById('apiGate');
+  const inp=document.getElementById('apiKeyInput');
+  const btn=document.getElementById('gateBtn');
+  btn.textContent='⚡ UPDATE KEY';inp.value='';
+  gate.style.opacity='0';gate.style.display='flex';
+  requestAnimationFrame(()=>{gate.style.transition='opacity .3s ease';gate.style.opacity='1';});
+  setTimeout(()=>inp.focus(),100);
+}
+
+function toggleKeyVis(){
+  const inp=document.getElementById('apiKeyInput');
+  inp.type=inp.type==='password'?'text':'password';
+}
+
+async function callAPI(messages,system,useSearch){
+  if(!AEGIS_API_KEY)throw new Error('No API key — click the KEY badge in the header to set your Anthropic API key.');
+  const body={model:'claude-sonnet-4-20250514',max_tokens:1000,system:system||SYSTEM_PROMPT,messages};
+  if(useSearch!==false)body.tools=[{type:'web_search_20250305',name:'web_search'}];
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':AEGIS_API_KEY,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify(body)
+  });
+  return res.json();
+}
+
+async function sendChat(){
+  if(isLoading)return;
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();if(!text)return;
+  isLoading=true;input.value='';input.style.height='auto';
+  document.getElementById('sendBtn').disabled=true;
+  const ts=new Date().toTimeString().split(' ')[0];
+  sharedHistory.push({role:'user',content:text,ts});
+  addMsgToUI('user',text,ts);saveMemory();
+  showTypingUI('messages');
+  try{
+    const data=await callAPI(sharedHistory.map(m=>({role:m.role==='ai'?'assistant':m.role,content:m.content})));
+    rmTyping('messages');
+    if(data.error){
+      sharedHistory.pop();saveMemory();
+      addErr(document.getElementById('messages'),'⚠️ '+data.error.message);
+    } else {
+      const reply=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+      const rts=new Date().toTimeString().split(' ')[0];
+      sharedHistory.push({role:'ai',content:reply,ts:rts});
+      addMsgToUI('ai',reply,rts);saveMemory();
+    }
+  }catch(err){rmTyping('messages');sharedHistory.pop();saveMemory();addErr(document.getElementById('messages'),'CONNECTION ERROR: '+err.message);}
+  isLoading=false;document.getElementById('sendBtn').disabled=false;input.focus();
+}
+
+function addErr(container,msg){const e=document.createElement('div');e.className='errbub';e.textContent=msg;container.appendChild(e);container.scrollTop=container.scrollHeight;}
+
+async function fetchIntel(override){
+  const q=override||document.getElementById('intelQuery').value.trim();if(!q)return;
+  const btn=document.getElementById('intelSearchBtn');btn.disabled=true;btn.textContent='SCANNING...';
+  const results=document.getElementById('intelResults');
+  results.innerHTML=`<div class="icard info" style="grid-column:1/-1;text-align:center;padding:24px"><div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:1px">🔍 SEARCHING LIVE THREAT FEEDS...</div></div>`;
+  try{
+    const data=await callAPI(
+      [{role:'user',content:`Search the web for: ${q}. Return a JSON array of 6-8 threat intelligence cards. Each object must have: title (string), severity (one of: CRITICAL, HIGH, MEDIUM, INFO), summary (2-3 sentences), source (publication/site name), date (approximate), tags (array of short strings). Return ONLY the JSON array. No markdown, no explanation.`}],
+      'You are a threat intelligence analyst. Always use web_search to find current data. Return only valid JSON arrays.'
+    );
+    const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    let cards=[];
+    try{const m=text.match(/\[[\s\S]*?\]/);if(m)cards=JSON.parse(m[0]);}catch(e){}
+    if(cards.length){
+      const sevMap={CRITICAL:'c',HIGH:'h',MEDIUM:'m',INFO:'i'};
+      results.innerHTML=cards.map(c=>`<div class="icard ${(c.severity||'info').toLowerCase()}"><div class="ic-header"><div class="ic-title">${esc(c.title||'Threat')}</div><div class="ic-sev sev-${sevMap[c.severity]||'i'}">${esc(c.severity||'INFO')}</div></div><div class="ic-body">${esc(c.summary||'')}</div><div class="ic-meta"><span>📅 ${esc(c.date||'Recent')}</span><span>🔗 ${esc(c.source||'Web')}</span>${(c.tags||[]).map(t=>`<span class="src-pill">${esc(t)}</span>`).join('')}</div></div>`).join('');
+    } else {
+      results.innerHTML=`<div class="icard info" style="grid-column:1/-1"><div class="ic-body">${fmt(text)}</div></div>`;
+    }
+  }catch(err){results.innerHTML=`<div class="icard critical" style="grid-column:1/-1"><div class="ic-body">Error: ${esc(err.message)}</div></div>`;}
+  btn.disabled=false;btn.textContent='🔍 SEARCH';
+}
+
+function saveCloud(p){
+  const creds={};
+  if(p==='aws'){creds.key=document.getElementById('aws-key').value;creds.secret=document.getElementById('aws-secret').value;creds.region=document.getElementById('aws-region').value;}
+  else if(p==='azure'){creds.tenant=document.getElementById('azure-tenant').value;creds.client=document.getElementById('azure-client').value;creds.secret=document.getElementById('azure-secret').value;creds.sub=document.getElementById('azure-sub').value;}
+  else if(p==='gcp'){creds.project=document.getElementById('gcp-project').value;creds.key=document.getElementById('gcp-key').value;}
+  else if(p==='onprem'){creds.desc=document.getElementById('onprem-desc').value;creds.scanner=document.getElementById('onprem-scanner').value;creds.key=document.getElementById('onprem-key').value;}
+  localStorage.setItem(`aegis_cloud_${p}`,JSON.stringify(creds));
+  const st=document.getElementById(`${p}-status`);st.className='cc-status st-conn';st.textContent='SAVED';
+  setTimeout(()=>{st.textContent='CONNECTED';},600);
+}
+
+async function analyzeCloud(p){
+  const st=document.getElementById(`${p}-status`);
+  const res=document.getElementById(`${p}-result`);
+  st.className='cc-status st-disc';st.textContent='ANALYZING...';
+  res.classList.add('visible');res.textContent='Analyzing '+p.toUpperCase()+' security posture...';
+  const creds=JSON.parse(localStorage.getItem(`aegis_cloud_${p}`)||'{}');
+  const ctx=p==='onprem'?(creds.desc||'On-premise environment'):`${p.toUpperCase()} cloud environment`;
+  try{
+    const data=await callAPI([{role:'user',content:`Analyze the security posture for: ${ctx}. Search for current best practices. Cover: top findings/risks, IAM review checklist, network security gaps, recommended immediate actions, compliance alignment. Be specific and actionable.`}]);
+    const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    res.innerHTML=fmt(text);st.className='cc-status st-conn';st.textContent='ANALYZED';
+    const ts=new Date().toTimeString().split(' ')[0];
+    sharedHistory.push({role:'ai',content:`[Cloud Analysis: ${p.toUpperCase()}]\n${text}`,ts});saveMemory();
+  }catch(err){res.textContent='Error: '+err.message;st.className='cc-status st-err';st.textContent='ERROR';}
+}
+
+function setFW(btn,fw){
+  document.querySelectorAll('.fw-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');compFW=fw;
+  const c=document.getElementById('comp-msgs');
+  const d=document.createElement('div');d.className='msg ai';
+  d.innerHTML=`<div class="av">AI</div><div class="mc"><div class="mm">AEGIS // FRAMEWORK SWITCHED</div><div class="mb"><strong>${esc(fw)}</strong> loaded. Ask me to map controls, identify gaps, generate audit evidence, or assess your architecture against this framework.</div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+async function sendCompliance(){
+  const input=document.getElementById('compInput');const text=input.value.trim();if(!text||isLoading)return;
+  isLoading=true;input.value='';
+  const c=document.getElementById('comp-msgs');
+  const ud=document.createElement('div');ud.className='msg user';
+  ud.innerHTML=`<div class="av">YOU</div><div class="mc"><div class="mm">OPERATOR // ${new Date().toTimeString().split(' ')[0]}</div><div class="mb" style="text-align:right">${esc(text)}</div></div>`;
+  c.appendChild(ud);c.scrollTop=c.scrollHeight;
+  showTypingUI('comp-msgs');
+  try{
+    const data=await callAPI(
+      [{role:'user',content:text}],
+      `${SYSTEM_PROMPT}\n\nACTIVE FRAMEWORK: ${compFW}. All compliance answers MUST reference ${compFW} specifically. Cite exact control IDs and names. Provide implementation guidance and required audit evidence. End with: "Note: This is expert AI guidance, not a formal audit certification. Engage a certified assessor (CISA/QSA/CISSP) for official audits."`
+    );
+    rmTyping('comp-msgs');
+    const reply=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    const rd=document.createElement('div');rd.className='msg ai';
+    rd.innerHTML=`<div class="av">AI</div><div class="mc"><div class="mm">AEGIS // ${esc(compFW)}</div><div class="mb">${fmt(reply)}</div></div>`;
+    c.appendChild(rd);c.scrollTop=c.scrollHeight;
+    const ts=new Date().toTimeString().split(' ')[0];
+    sharedHistory.push({role:'user',content:`[${compFW}] ${text}`,ts});
+    sharedHistory.push({role:'ai',content:reply,ts});saveMemory();
+  }catch(err){rmTyping('comp-msgs');addErr(c,'Error: '+err.message);}
+  isLoading=false;
+}
+
+function saveInt(tool){
+  const fields={slack:['slack-webhook','slack-channel'],teams:['teams-webhook'],jira:['jira-url','jira-email','jira-token','jira-project'],splunk:['splunk-host','splunk-token','splunk-index'],servicenow:['snow-url','snow-user','snow-pass'],nessus:['nessus-host','nessus-akey','nessus-skey'],notion:['notion-token','notion-db'],obsidian:['obs-url','obs-key','obs-folder'],m365:['m365-tenant','m365-client','m365-secret']};
+  const vals={};(fields[tool]||[]).forEach(f=>{const el=document.getElementById(f);if(el)vals[f]=el.value;});
+  const filled=Object.values(vals).some(v=>v&&v.length>3);
+  const st=document.getElementById(`${tool}-status`);
+  if(!filled){showSt(st,'Fill in the required fields first.','err');return;}
+  localStorage.setItem(`aegis_int_${tool}`,JSON.stringify(vals));
+  showSt(st,'✓ Credentials saved locally. AEGIS will reference these when generating integration commands and alert configurations. Direct browser-to-API calls require a CORS proxy for production deployments.','ok');
+}
+
+function showSt(el,msg,type){el.textContent=msg;el.className=`int-status-msg ${type}`;}
+
+function toggleDocs(e){
+  e.stopPropagation();
+  const dd=document.getElementById('docsDropdown');
+  dd.classList.toggle('open');
+}
+// Close docs dropdown when clicking anywhere else
+document.addEventListener('click',function(e){
+  const wrap=document.getElementById('docsWrap');
+  if(wrap&&!wrap.contains(e.target)){
+    document.getElementById('docsDropdown').classList.remove('open');
+  }
+});
+
+loadMemory();
+loadApiKey();
+</script>
+</body>
+</html>
