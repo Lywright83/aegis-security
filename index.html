@@ -15,9 +15,9 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
 .logo-hex svg{width:34px;height:34px;filter:drop-shadow(0 0 8px var(--cyan));animation:hpulse 3s ease-in-out infinite}
 @keyframes hpulse{0%,100%{filter:drop-shadow(0 0 6px var(--cyan))}50%{filter:drop-shadow(0 0 18px var(--cyan))}}
 .logo-text h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:5px;color:var(--cyan);text-shadow:0 0 18px rgba(0,212,255,.5);line-height:1}
-.logo-text p{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:2px;margin-top:2px}
+.logo-text p{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:2px;margin-top:2px}
 .hdr-center{display:flex;gap:6px}
-.hdr-pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:1px;border:1px solid;cursor:default}
+.hdr-pill{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:1px;border:1px solid;cursor:default}
 .pill-online{color:var(--green);border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.06)}
 .pill-search{color:var(--cyan);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.06)}
 .pill-mem{color:var(--purple);border-color:rgba(157,111,255,.3);background:rgba(157,111,255,.06)}
@@ -25,23 +25,22 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
 .dot-g{background:var(--green);box-shadow:0 0 6px var(--green)}.dot-c{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}.dot-p{background:var(--purple);box-shadow:0 0 6px var(--purple)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hdr-right{display:flex;align-items:center;gap:8px}
-#clock{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--txt3)}
+#clock{font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--txt3)}
 .tabbar{position:relative;z-index:15;display:flex;align-items:stretch;background:rgba(4,16,24,.96);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto}
 .tabbar::-webkit-scrollbar{height:2px}.tabbar::-webkit-scrollbar-thumb{background:var(--border)}
-.tab{display:flex;align-items:center;gap:6px;padding:9px 18px;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:1px;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0;background:transparent;border-top:none;border-left:none;border-right:none}
+.tab{display:flex;align-items:center;gap:6px;padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:1px;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0;background:transparent;border-top:none;border-left:none;border-right:none}
 .tab:hover{color:var(--txt2);background:rgba(0,212,255,.04)}.tab.active{color:var(--cyan);border-bottom-color:var(--cyan);background:rgba(0,212,255,.06)}
 .workspace{position:relative;z-index:5;flex:1;overflow:hidden;display:flex}
 .panel{display:none;flex:1;overflow:hidden;flex-direction:column}.panel.active{display:flex}
 /* CHAT */
 .chat-layout{display:flex;flex:1;overflow:hidden}
-.chat-sidebar::-webkit-scrollbar{width:2px}.chat-sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.chat-sidebar{width:210px;flex-shrink:0;background:rgba(6,21,37,.97);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.chat-sidebar{width:195px;flex-shrink:0;background:rgba(6,21,37,.97);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 .cs-section{padding:11px;border-bottom:1px solid var(--border2)}
-.cs-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
-.qbtn{display:block;width:100%;text-align:left;padding:6px 9px;margin-bottom:2px;background:transparent;border:1px solid transparent;border-radius:2px;color:var(--txt2);font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;transition:all .18s;line-height:1.35}
+.cs-label{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
+.qbtn{display:block;width:100%;text-align:left;padding:5px 8px;margin-bottom:2px;background:transparent;border:1px solid transparent;border-radius:2px;color:var(--txt2);font-family:'DM Sans',sans-serif;font-size:.68rem;cursor:pointer;transition:all .18s;line-height:1.3}
 .qbtn:hover{border-color:var(--border);background:rgba(0,212,255,.05);color:var(--cyan);padding-left:11px}
-.cs-caps{padding:11px;border-bottom:1px solid var(--border2)}
-.cap{display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(12,52,73,.3);font-size:.74rem;color:var(--txt2);line-height:1.4}
+.cs-caps{flex:1;overflow-y:auto;padding:11px}
+.cap{display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(12,52,73,.3);font-size:.6rem;color:var(--txt2);line-height:1.4}
 .cap-dot{width:3px;height:3px;border-radius:50%;background:var(--cyan);margin-top:5px;flex-shrink:0;opacity:.5}
 .chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .messages{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:16px}
@@ -49,26 +48,26 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
 .welcome{text-align:center;padding:28px 16px;animation:fin .7s ease}
 @keyframes fin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .welcome h2{font-family:'Rajdhani',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--cyan);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:6px}
-.welcome p{color:var(--txt2);font-size:.95rem;line-height:1.7;max-width:480px;margin:0 auto 18px}
+.welcome p{color:var(--txt2);font-size:.78rem;line-height:1.7;max-width:480px;margin:0 auto 18px}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:560px;margin:0 auto}
-.chip{padding:5px 13px;border:1px solid var(--border);border-radius:2px;font-size:.72rem;color:var(--txt2);cursor:pointer;background:rgba(0,212,255,.03);font-family:'Share Tech Mono',monospace;transition:all .18s}
+.chip{padding:4px 11px;border:1px solid var(--border);border-radius:2px;font-size:.6rem;color:var(--txt2);cursor:pointer;background:rgba(0,212,255,.03);font-family:'Share Tech Mono',monospace;transition:all .18s}
 .chip:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.07)}
 .msg{display:flex;gap:10px;animation:fin .25s ease;max-width:840px}
 .msg.user{flex-direction:row-reverse;align-self:flex-end}.msg.ai{align-self:flex-start;width:100%}
-.av{width:30px;height:30px;border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-family:'Share Tech Mono',monospace;margin-top:2px}
+.av{width:28px;height:28px;border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-family:'Share Tech Mono',monospace;margin-top:2px}
 .msg.ai .av{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--cyan)}
 .msg.user .av{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);color:var(--green)}
 .mc{max-width:calc(100% - 40px);min-width:0}
-.mm{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:1px;margin-bottom:3px}
+.mm{font-family:'Share Tech Mono',monospace;font-size:.46rem;color:var(--txt3);letter-spacing:1px;margin-bottom:3px}
 .msg.user .mm{text-align:right}
-.mb{padding:12px 16px;border-radius:2px;font-size:1rem;line-height:1.8;word-break:break-word}
+.mb{padding:10px 14px;border-radius:2px;font-size:.78rem;line-height:1.75;word-break:break-word}
 .msg.ai .mb{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--cyan)}
 .msg.user .mb{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.18);border-right:2px solid var(--green);text-align:right}
-.mb pre{background:rgba(2,11,18,.9);border:1px solid var(--border);border-radius:2px;padding:12px;margin:8px 0;overflow-x:auto;font-family:'Share Tech Mono',monospace;font-size:.82rem;color:var(--cyan);line-height:1.65;white-space:pre-wrap}
-.mb code{font-family:'Share Tech Mono',monospace;font-size:.88rem;color:var(--green);background:rgba(0,255,136,.05);padding:2px 6px;border-radius:2px}
-.mb strong{color:var(--cyan);font-weight:600}.mb h3{font-family:'Rajdhani',sans-serif;font-size:1.05rem;letter-spacing:1px;color:var(--cyan);margin:12px 0 5px;font-weight:600}
-.mb ul{padding-left:16px;margin:6px 0}.mb li{margin:4px 0;color:var(--txt2)}.mb li::marker{color:var(--cyan)}
-.stag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.66rem;letter-spacing:1px;margin:1px}
+.mb pre{background:rgba(2,11,18,.9);border:1px solid var(--border);border-radius:2px;padding:10px;margin:8px 0;overflow-x:auto;font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--cyan);line-height:1.6;white-space:pre-wrap}
+.mb code{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--green);background:rgba(0,255,136,.05);padding:1px 5px;border-radius:2px}
+.mb strong{color:var(--cyan);font-weight:600}.mb h3{font-family:'Rajdhani',sans-serif;font-size:.88rem;letter-spacing:1px;color:var(--cyan);margin:10px 0 4px;font-weight:600}
+.mb ul{padding-left:14px;margin:5px 0}.mb li{margin:3px 0;color:var(--txt2)}.mb li::marker{color:var(--cyan)}
+.stag{display:inline-block;padding:1px 6px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.54rem;letter-spacing:1px;margin:1px}
 .tc{background:rgba(255,51,102,.14);border:1px solid rgba(255,51,102,.4);color:var(--red)}
 .th{background:rgba(255,140,66,.12);border:1px solid rgba(255,140,66,.35);color:var(--orange)}
 .tm{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--cyan)}
@@ -80,8 +79,8 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
 @keyframes dp{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
 .input-bar{padding:10px 14px;background:rgba(4,16,24,.98);border-top:1px solid var(--border);flex-shrink:0}
 .irow{display:flex;gap:7px;align-items:flex-end}.iwrap{flex:1}
-textarea{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:10px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:1rem;resize:none;outline:none;min-height:44px;max-height:120px;line-height:1.5;transition:border-color .2s;overflow-y:auto;-webkit-appearance:none}
-textarea::placeholder{color:var(--txt3);font-family:'Share Tech Mono',monospace;font-size:.76rem}
+textarea{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:9px 13px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.8rem;resize:none;outline:none;min-height:42px;max-height:110px;line-height:1.5;transition:border-color .2s;overflow-y:auto;-webkit-appearance:none}
+textarea::placeholder{color:var(--txt3);font-family:'Share Tech Mono',monospace;font-size:.65rem}
 textarea:focus{border-color:rgba(0,212,255,.4)}
 .sbtn{width:42px;height:42px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--cyan);flex-shrink:0}
 .sbtn:hover:not(:disabled){background:rgba(0,212,255,.2);border-color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,.18)}
@@ -181,514 +180,9 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
 ::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .warn-bar{background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:3px;padding:10px 14px;margin-bottom:16px;font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--orange);line-height:1.7}
 @media(max-width:640px){.chat-sidebar{display:none}.hdr-center{display:none}.tab{padding:7px 10px;font-size:.5rem}.messages{padding:12px 8px}.intel-grid,.cloud-grid,.int-grid{grid-template-columns:1fr}.comp-chat{height:calc(100vh - 280px)}}
-
-/* ── API KEY GATE ── */
-#apiGate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
-#apiGate::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
-.gate-box{position:relative;background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--cyan);border-radius:4px;padding:40px 36px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(0,212,255,.06);animation:gfade .5s ease}
-@keyframes gfade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.gate-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;justify-content:center}
-.gate-logo svg{width:44px;height:44px;filter:drop-shadow(0 0 10px var(--cyan))}
-.gate-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;letter-spacing:5px;color:var(--cyan);text-shadow:0 0 20px rgba(0,212,255,.4)}
-.gate-sub{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--txt3);letter-spacing:2px;text-align:center;margin-bottom:28px}
-.gate-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--txt3);letter-spacing:1px;display:block;margin-bottom:7px}
-.gate-input-wrap{position:relative;margin-bottom:10px}
-#apiKeyInput{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:12px 44px 12px 14px;color:var(--txt);font-family:'Share Tech Mono',monospace;font-size:.85rem;outline:none;transition:border-color .2s;letter-spacing:1px}
-#apiKeyInput:focus{border-color:rgba(0,212,255,.5);box-shadow:0 0 0 2px rgba(0,212,255,.08)}
-#apiKeyInput::placeholder{color:var(--txt3);letter-spacing:0}
-.gate-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:var(--txt3);cursor:pointer;font-size:1rem;padding:4px;transition:color .2s}
-.gate-eye:hover{color:var(--cyan)}
-.gate-btn{width:100%;padding:13px;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.4);border-radius:2px;color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.8rem;letter-spacing:2px;cursor:pointer;transition:all .2s;margin-top:4px}
-.gate-btn:hover{background:rgba(0,212,255,.22);border-color:var(--cyan);box-shadow:0 0 20px rgba(0,212,255,.15)}
-.gate-btn:disabled{opacity:.4;cursor:not-allowed}
-.gate-err{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--red);background:rgba(255,51,102,.07);border:1px solid rgba(255,51,102,.2);border-radius:2px;padding:8px 12px;margin-top:8px;display:none}
-.gate-err.show{display:block}
-.gate-help{margin-top:20px;padding-top:18px;border-top:1px solid var(--border)}
-.gate-help p{font-size:.75rem;color:var(--txt3);line-height:1.7;margin-bottom:8px}
-.gate-help a{color:var(--cyan);text-decoration:none}
-.gate-help a:hover{text-decoration:underline}
-.gate-steps{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--txt2);line-height:2;list-style:none;padding:0}
-.gate-steps li::before{content:'→  ';color:var(--cyan)}
-.gate-note{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--txt3);margin-top:14px;line-height:1.6;padding:8px 10px;background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.1);border-radius:2px}
-/* Key badge in header */
-#keyBadge{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,255,136,.3);color:var(--green);background:rgba(0,255,136,.06);cursor:pointer;transition:all .2s}
-#keyBadge:hover{border-color:var(--green);background:rgba(0,255,136,.12)}
-.key-dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2s infinite}
-/* Docs button + dropdown */
-.docs-wrap{position:relative}
-#docsBtn{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:.62rem;border:1px solid rgba(0,212,255,.3);color:var(--cyan);background:rgba(0,212,255,.06);cursor:pointer;transition:all .2s}
-#docsBtn:hover{border-color:var(--cyan);background:rgba(0,212,255,.14);box-shadow:0 0 10px rgba(0,212,255,.12)}
-.docs-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;width:260px;background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--cyan);border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 20px rgba(0,212,255,.06);z-index:999;overflow:hidden}
-.docs-dropdown.open{display:block;animation:ddopen .18s ease}
-@keyframes ddopen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.dd-header{padding:8px 12px;background:rgba(0,212,255,.06);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--t3);letter-spacing:2px}
-.dd-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border2);text-decoration:none;transition:background .18s;cursor:pointer}
-.dd-item:last-child{border-bottom:none}
-.dd-item:hover{background:rgba(0,212,255,.07)}
-.dd-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
-.dd-text{flex:1}
-.dd-title{font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--txt);letter-spacing:.5px;line-height:1.2}
-.dd-sub{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--txt3);margin-top:2px;line-height:1.4}
-.dd-ext{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--cyan);margin-top:3px}
-.dd-divider{height:1px;background:var(--border);margin:2px 0}
-.dd-github{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(0,255,136,.04);text-decoration:none;transition:background .18s}
-.dd-github:hover{background:rgba(0,255,136,.1)}
-.dd-github span{font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--green);letter-spacing:1px}
-
-/* ── COPY BUTTON ── */
-.msg.ai .mc{position:relative}
-.copy-btn{
-  position:absolute;top:4px;right:4px;
-  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);
-  border-radius:2px;padding:3px 8px;
-  font-family:'Share Tech Mono',monospace;font-size:.52rem;
-  color:var(--txt3);cursor:pointer;opacity:0;
-  transition:opacity .2s,background .2s,color .2s;
-  letter-spacing:1px;
-}
-.msg.ai:hover .copy-btn{opacity:1}
-.copy-btn:hover{background:rgba(0,212,255,.2);color:var(--cyan)}
-.copy-btn.copied{color:var(--green);border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.08)}
-
-/* ── SKILL MODE BUTTONS ── */
-.skill-modes{margin-top:4px}
-.cs-toggle{
-  display:flex;align-items:center;justify-content:space-between;
-  cursor:pointer;user-select:none;padding:3px 2px;
-  border-radius:2px;transition:color .2s;
-}
-.cs-toggle:hover{color:var(--cyan)}
-.cs-arrow{font-size:.5rem;transition:transform .25s;opacity:.6}
-.cs-arrow.open{transform:rotate(180deg)}
-.cs-collapsible{overflow:hidden;transition:all .25s ease}
-
-  display:flex;align-items:center;gap:7px;
-  width:100%;padding:6px 9px;margin-bottom:4px;
-  background:rgba(0,212,255,.03);
-  border:1px solid var(--border);border-radius:2px;
-  color:var(--txt2);font-family:'Share Tech Mono',monospace;
-  font-size:.6rem;letter-spacing:.5px;cursor:pointer;
-  text-align:left;transition:all .2s;
-}
-.skill-btn:hover{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.3);color:var(--cyan)}
-.skill-btn.active{
-  background:rgba(0,212,255,.12);
-  border-color:var(--cyan);color:var(--cyan);
-  box-shadow:0 0 10px rgba(0,212,255,.1);
-}
-.skill-btn.active::after{content:'● ACTIVE';margin-left:auto;font-size:.48rem;color:var(--green)}
-.skill-mode-bar{
-  display:flex;align-items:center;gap:8px;
-  padding:5px 12px;
-  background:rgba(0,212,255,.06);
-  border-bottom:1px solid var(--border);
-  font-family:'Share Tech Mono',monospace;font-size:.55rem;
-  color:var(--txt2);flex-shrink:0;
-}
-.skill-mode-bar span{color:var(--cyan);letter-spacing:1px}
-.skill-mode-exit{
-  margin-left:auto;padding:2px 8px;
-  border:1px solid rgba(255,140,66,.4);border-radius:2px;
-  background:transparent;color:var(--orange);
-  font-family:'Share Tech Mono',monospace;font-size:.5rem;
-  cursor:pointer;letter-spacing:1px;transition:all .2s;
-}
-.skill-mode-exit:hover{background:rgba(255,140,66,.1);border-color:var(--orange)}
-
-/* ── SECRET POWER: AI OPPORTUNITY ENGINE ── */
-.sp-modal{
-  display:none;position:fixed;inset:0;z-index:8000;
-  background:rgba(1,12,20,.97);
-  flex-direction:column;overflow:hidden;
-  animation:sp-in .3s ease;
-}
-.sp-modal.open{display:flex}
-@keyframes sp-in{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
-
-.sp-header{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 24px;
-  background:rgba(4,16,24,.98);
-  border-bottom:2px solid var(--purple);
-  flex-shrink:0;
-}
-.sp-header-icon{font-size:1.4rem}
-.sp-header-text{flex:1}
-.sp-title{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:.9rem;letter-spacing:4px;
-  color:var(--purple);text-shadow:0 0 20px rgba(157,111,255,.5);
-}
-.sp-subtitle{
-  font-family:'Share Tech Mono',monospace;font-size:.52rem;
-  color:var(--txt3);letter-spacing:2px;margin-top:2px;
-}
-.sp-close{
-  padding:6px 14px;background:transparent;
-  border:1px solid var(--border);border-radius:2px;
-  color:var(--txt2);font-family:'Share Tech Mono',monospace;
-  font-size:.58rem;cursor:pointer;letter-spacing:1px;transition:all .2s;
-}
-.sp-close:hover{border-color:var(--red);color:var(--red)}
-
-.sp-body{
-  display:flex;flex:1;overflow:hidden;gap:0;
-}
-
-/* Left — opportunities list */
-.sp-list{
-  width:340px;flex-shrink:0;
-  border-right:1px solid var(--border);
-  overflow-y:auto;padding:16px;
-  display:flex;flex-direction:column;gap:10px;
-}
-.sp-opp{
-  padding:14px;
-  background:rgba(4,12,20,.8);
-  border:1px solid var(--border);border-radius:3px;
-  cursor:pointer;transition:all .2s;
-  border-left:3px solid transparent;
-}
-.sp-opp:hover{border-color:rgba(157,111,255,.4);background:rgba(157,111,255,.06)}
-.sp-opp.selected{border-left-color:var(--purple);background:rgba(157,111,255,.1);border-color:rgba(157,111,255,.4)}
-.sp-opp-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.sp-opp-icon{font-size:1.1rem}
-.sp-opp-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--txt);flex:1}
-.sp-opp-impact{
-  padding:2px 7px;border-radius:2px;font-family:'Share Tech Mono',monospace;
-  font-size:.48rem;letter-spacing:1px;
-}
-.imp-high{background:rgba(255,51,102,.12);border:1px solid rgba(255,51,102,.3);color:var(--red)}
-.imp-med{background:rgba(255,140,66,.1);border:1px solid rgba(255,140,66,.3);color:var(--orange)}
-.imp-low{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--cyan)}
-.sp-opp-desc{font-size:.72rem;color:var(--txt2);line-height:1.6}
-.sp-opp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.sp-tag{
-  padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;
-  font-size:.48rem;border:1px solid rgba(157,111,255,.3);
-  color:var(--purple);background:rgba(157,111,255,.06);
-}
-
-/* Right — detail + action panel */
-.sp-detail{
-  flex:1;display:flex;flex-direction:column;overflow:hidden;
-}
-.sp-detail-top{
-  flex:1;overflow-y:auto;padding:24px;
-}
-.sp-detail-title{
-  font-family:'Orbitron',sans-serif;font-weight:700;
-  font-size:1rem;letter-spacing:3px;color:var(--purple);
-  margin-bottom:6px;
-}
-.sp-detail-meta{
-  font-family:'Share Tech Mono',monospace;font-size:.55rem;
-  color:var(--txt3);letter-spacing:1px;margin-bottom:20px;
-}
-.sp-section{margin-bottom:20px}
-.sp-section-label{
-  font-family:'Share Tech Mono',monospace;font-size:.56rem;
-  letter-spacing:3px;color:var(--cyan);margin-bottom:10px;
-  padding-bottom:4px;border-bottom:1px solid var(--border);
-}
-.sp-content{
-  font-size:.82rem;color:var(--txt2);line-height:1.8;
-}
-.sp-finding{
-  display:flex;gap:8px;padding:8px 12px;margin-bottom:6px;
-  background:rgba(4,12,20,.6);border:1px solid var(--border);border-radius:2px;
-  border-left:2px solid var(--purple);
-}
-.sp-finding-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);margin-top:6px;flex-shrink:0}
-.sp-finding-text{font-size:.8rem;color:var(--txt2);line-height:1.6}
-.sp-step{
-  display:flex;gap:12px;padding:10px 14px;margin-bottom:6px;
-  background:rgba(4,12,20,.6);border:1px solid var(--border);border-radius:2px;
-}
-.sp-step-num{
-  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.9rem;
-  color:var(--cyan);min-width:24px;text-align:center;
-}
-.sp-step-body{flex:1}
-.sp-step-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;color:var(--txt);margin-bottom:3px}
-.sp-step-desc{font-size:.78rem;color:var(--txt2);line-height:1.6}
-.sp-code{
-  background:#030c14;border:1px solid var(--border);border-radius:2px;
-  padding:12px;font-family:'Share Tech Mono',monospace;
-  font-size:.7rem;color:var(--cyan);line-height:1.7;
-  overflow-x:auto;margin-top:6px;white-space:pre-wrap;
-}
-
-/* Action bar */
-.sp-actions{
-  padding:16px 24px;
-  border-top:1px solid var(--border);
-  background:rgba(4,12,20,.9);
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-}
-.sp-action-label{
-  font-family:'Share Tech Mono',monospace;font-size:.52rem;
-  color:var(--txt3);letter-spacing:2px;margin-right:4px;
-}
-.sp-btn{
-  display:flex;align-items:center;gap:7px;
-  padding:10px 20px;border-radius:2px;
-  font-family:'Share Tech Mono',monospace;font-size:.62rem;
-  letter-spacing:1px;cursor:pointer;transition:all .2s;
-  border:1px solid;
-}
-.sp-btn-findings{
-  color:var(--cyan);border-color:rgba(0,212,255,.4);
-  background:rgba(0,212,255,.08);
-}
-.sp-btn-findings:hover{background:rgba(0,212,255,.18);border-color:var(--cyan);box-shadow:0 0 16px rgba(0,212,255,.2)}
-.sp-btn-pdf{
-  color:var(--orange);border-color:rgba(255,140,66,.4);
-  background:rgba(255,140,66,.08);
-}
-.sp-btn-pdf:hover{background:rgba(255,140,66,.18);border-color:var(--orange);box-shadow:0 0 16px rgba(255,140,66,.2)}
-.sp-btn-action{
-  color:var(--purple);border-color:rgba(157,111,255,.5);
-  background:rgba(157,111,255,.1);
-  font-weight:700;
-}
-.sp-btn-action:hover{background:rgba(157,111,255,.22);border-color:var(--purple);box-shadow:0 0 20px rgba(157,111,255,.3)}
-.sp-btn-action.deploying{
-  color:var(--green);border-color:rgba(0,255,136,.5);
-  background:rgba(0,255,136,.1);animation:pulse-green 1s infinite;
-}
-@keyframes pulse-green{0%,100%{box-shadow:0 0 8px rgba(0,255,136,.2)}50%{box-shadow:0 0 20px rgba(0,255,136,.4)}}
-
-/* Trigger button in sidebar */
-.sp-trigger{
-  width:100%;margin-top:10px;
-  padding:10px;
-  background:linear-gradient(135deg,rgba(157,111,255,.15),rgba(0,212,255,.08));
-  border:1px solid rgba(157,111,255,.5);border-radius:2px;
-  color:var(--purple);
-  font-family:'Share Tech Mono',monospace;font-size:.62rem;
-  letter-spacing:1px;cursor:pointer;transition:all .25s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.sp-trigger:hover{
-  background:linear-gradient(135deg,rgba(157,111,255,.28),rgba(0,212,255,.12));
-  border-color:var(--purple);
-  box-shadow:0 0 20px rgba(157,111,255,.25);
-  color:#fff;
-}
-.sp-trigger-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--purple);box-shadow:0 0 8px var(--purple);
-  animation:blink 1.5s infinite;
-}
-
-/* Loading state */
-.sp-loading{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;gap:16px;
-}
-.sp-loading-text{
-  font-family:'Share Tech Mono',monospace;font-size:.65rem;
-  color:var(--purple);letter-spacing:3px;
-  animation:blink 1.5s infinite;
-}
-.sp-empty{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;gap:12px;color:var(--txt3);
-  font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:2px;
-  text-align:center;padding:40px;
-}
-
-/* ── AI SCANNER PANEL ── */
-.ais-panel{padding:24px;height:100%;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
-.ais-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.ais-title-block{}
-.ais-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ais-scan-btn{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 22px;
-  background:linear-gradient(135deg,rgba(157,111,255,.18),rgba(0,212,255,.08));
-  border:1px solid rgba(157,111,255,.6);border-radius:2px;
-  color:var(--purple);font-family:'Share Tech Mono',monospace;
-  font-size:.65rem;letter-spacing:2px;cursor:pointer;transition:all .25s;
-}
-.ais-scan-btn:hover{background:linear-gradient(135deg,rgba(157,111,255,.3),rgba(0,212,255,.12));border-color:var(--purple);box-shadow:0 0 20px rgba(157,111,255,.25)}
-.ais-scan-btn:disabled{opacity:.4;cursor:not-allowed}
-.ais-filter-bar{
-  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  padding:10px 14px;
-  background:rgba(4,12,20,.7);border:1px solid var(--border);border-radius:2px;
-}
-.ais-filter-label{font-family:'Share Tech Mono',monospace;font-size:.54rem;color:var(--txt3);letter-spacing:2px;margin-right:4px}
-.ais-filter-btn{
-  padding:4px 12px;border-radius:2px;font-family:'Share Tech Mono',monospace;
-  font-size:.56rem;letter-spacing:1px;cursor:pointer;transition:all .2s;
-  border:1px solid var(--border);background:transparent;color:var(--txt3);
-}
-.ais-filter-btn:hover{border-color:rgba(157,111,255,.4);color:var(--purple)}
-.ais-filter-btn.active{border-color:var(--purple);color:var(--purple);background:rgba(157,111,255,.1)}
-.ais-filter-btn.cyber{border-color:rgba(0,212,255,.4);color:var(--cyan);background:rgba(0,212,255,.08)}
-.ais-filter-btn.cyber.active{border-color:var(--cyan);background:rgba(0,212,255,.15)}
-
-/* Stats row */
-.ais-stats{display:flex;gap:12px;flex-wrap:wrap}
-.ais-stat{
-  padding:10px 18px;
-  background:rgba(4,12,20,.7);border:1px solid var(--border);border-radius:2px;
-  text-align:center;
-}
-.ais-stat-num{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.4rem;line-height:1}
-.ais-stat-label{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--txt3);letter-spacing:1px;margin-top:3px}
-
-/* Grid */
-.ais-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:14px;
-}
-
-/* AI Tool Card */
-.ait-card{
-  background:rgba(4,12,20,.85);
-  border:1px solid var(--border);border-radius:3px;
-  overflow:hidden;transition:all .25s;
-  position:relative;
-}
-.ait-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4);border-color:rgba(157,111,255,.3)}
-.ait-card.is-cyber{border-top:2px solid var(--cyan)}
-.ait-card.is-cyber:hover{border-color:rgba(0,212,255,.5)}
-.ait-card-header{
-  display:flex;align-items:flex-start;gap:10px;
-  padding:14px 14px 10px;
-}
-.ait-card-icon{
-  width:36px;height:36px;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;flex-shrink:0;
-  background:rgba(157,111,255,.12);border:1px solid rgba(157,111,255,.2);
-}
-.ait-card.is-cyber .ait-card-icon{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.25)}
-.ait-card-meta{flex:1}
-.ait-card-name{
-  font-family:'Rajdhani',sans-serif;font-weight:700;
-  font-size:.95rem;color:var(--txt);letter-spacing:.5px;
-  margin-bottom:2px;
-}
-.ait-card-maker{font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--txt3);letter-spacing:1px}
-.ait-card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
-.ait-badge{
-  padding:2px 7px;border-radius:2px;font-family:'Share Tech Mono',monospace;
-  font-size:.46rem;letter-spacing:.5px;
-}
-.badge-cyber{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--cyan)}
-.badge-new{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green)}
-.badge-free{background:rgba(255,184,48,.08);border:1px solid rgba(255,184,48,.3);color:var(--orange)}
-.badge-api{background:rgba(157,111,255,.1);border:1px solid rgba(157,111,255,.3);color:var(--purple)}
-.badge-agent{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red)}
-.ait-card-desc{
-  padding:0 14px 10px;
-  font-size:.78rem;color:var(--txt2);line-height:1.6;
-}
-.ait-card-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 14px;
-  border-top:1px solid var(--border2);
-  background:rgba(0,0,0,.2);
-}
-.ait-card-category{
-  font-family:'Share Tech Mono',monospace;font-size:.5rem;
-  color:var(--txt3);letter-spacing:1px;
-}
-.ait-card-btn{
-  padding:4px 12px;border-radius:2px;font-family:'Share Tech Mono',monospace;
-  font-size:.52rem;letter-spacing:1px;cursor:pointer;transition:all .2s;
-  border:1px solid rgba(157,111,255,.35);background:transparent;color:var(--purple);
-}
-.ait-card-btn:hover{background:rgba(157,111,255,.15);border-color:var(--purple)}
-.ait-card.is-cyber .ait-card-btn{border-color:rgba(0,212,255,.35);color:var(--cyan)}
-.ait-card.is-cyber .ait-card-btn:hover{background:rgba(0,212,255,.12);border-color:var(--cyan)}
-
-/* Cyber spotlight */
-.ais-cyber-section{
-  padding:16px;
-  background:rgba(0,212,255,.03);
-  border:1px solid rgba(0,212,255,.15);
-  border-top:2px solid var(--cyan);
-  border-radius:3px;
-}
-.ais-cyber-title{
-  font-family:'Orbitron',sans-serif;font-weight:700;
-  font-size:.75rem;letter-spacing:3px;color:var(--cyan);
-  margin-bottom:4px;
-}
-.ais-cyber-sub{font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--txt3);letter-spacing:1px;margin-bottom:14px}
-
-/* Scanning animation */
-.ais-scanning{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:60px 20px;gap:16px;
-}
-.ais-scan-ring{
-  width:80px;height:80px;border-radius:50%;
-  border:2px solid var(--border);
-  border-top-color:var(--purple);
-  animation:spin360 1s linear infinite;
-}
-@keyframes spin360{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.ais-scan-text{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--purple);letter-spacing:3px}
-.ais-scan-sub{font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--txt3);letter-spacing:1px}
-.ais-empty{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:60px 20px;gap:12px;color:var(--txt3);
-  font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:2px;text-align:center;
-}
-.ais-last-scan{font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--txt3);letter-spacing:1px}
-
-/* Ask ATLAS about tool */
-.ait-ask-btn{
-  width:100%;margin-top:2px;padding:6px;
-  background:transparent;border:none;border-top:1px solid var(--border2);
-  color:var(--txt3);font-family:'Share Tech Mono',monospace;font-size:.52rem;
-  cursor:pointer;transition:all .2s;letter-spacing:1px;
-}
-.ait-ask-btn:hover{color:var(--cyan);background:rgba(0,212,255,.04)}
 </style>
 </head>
 <body>
-
-<!-- ── API KEY GATE ── -->
-<div id="apiGate">
-  <div class="gate-box">
-    <div class="gate-logo">
-      <svg viewBox="0 0 42 42" fill="none">
-        <polygon points="21,2 38,11 38,31 21,40 4,31 4,11" stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,0.07)"/>
-        <circle cx="21" cy="21" r="5" fill="rgba(0,212,255,0.25)" stroke="#00d4ff" stroke-width="1.2"/>
-        <circle cx="21" cy="21" r="2" fill="#00d4ff"/>
-      </svg>
-      <div class="gate-title">AEGIS</div>
-    </div>
-    <div class="gate-sub">ENTERPRISE SECURITY PLATFORM // v3.0</div>
-
-    <label class="gate-label" for="apiKeyInput">ANTHROPIC API KEY</label>
-    <div class="gate-input-wrap">
-      <input id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter')submitKey()">
-      <button class="gate-eye" onclick="toggleKeyVis()" title="Show/hide key">👁</button>
-    </div>
-    <div id="gateErr" class="gate-err">Invalid key format. Anthropic API keys start with <strong>sk-ant-</strong></div>
-    <button class="gate-btn" id="gateBtn" onclick="submitKey()">⚡ INITIALIZE AEGIS</button>
-
-    <div class="gate-help">
-      <p>Don't have an API key yet? Get one free in under 2 minutes:</p>
-      <ul class="gate-steps">
-        <li>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
-        <li>Sign up for a free account</li>
-        <li>Click <strong>API Keys</strong> → <strong>Create Key</strong></li>
-        <li>Copy the key (starts with sk-ant-...) and paste above</li>
-      </ul>
-      <div class="gate-note">🔒 Your key is saved only in your browser's localStorage and is never sent anywhere except directly to Anthropic's API. It is not stored on any server.</div>
-    </div>
-  </div>
-</div>
 <header>
   <div class="logo">
     <div class="logo-hex">
@@ -712,38 +206,7 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
     <div class="hdr-pill pill-search"><div class="hdr-dot dot-c"></div>LIVE THREAT INTEL</div>
     <div class="hdr-pill pill-mem"><div class="hdr-dot dot-p"></div>MEMORY: <span id="memCount">0</span> MSGS</div>
   </div>
-  <div class="hdr-right">
-    <!-- DOCS BUTTON -->
-    <div class="docs-wrap" id="docsWrap">
-      <button id="docsBtn" onclick="toggleDocs(event)" title="Documentation & Guides">📄 DOCS</button>
-      <div class="docs-dropdown" id="docsDropdown">
-        <div class="dd-header">// AEGIS DOCUMENTATION</div>
-        <a class="dd-item" href="https://Lywright83.github.io/aegis-security/AEGIS-Enterprise-Setup-Guide.pdf" target="_blank">
-          <span class="dd-icon">⚙️</span>
-          <div class="dd-text">
-            <div class="dd-title">Setup Guide</div>
-            <div class="dd-sub">Quick start, features, backend agent, privacy</div>
-            <div class="dd-ext">↗ AEGIS-Enterprise-Setup-Guide.pdf</div>
-          </div>
-        </a>
-        <a class="dd-item" href="https://Lywright83.github.io/aegis-security/AEGIS-Integration-Guide.pdf" target="_blank">
-          <span class="dd-icon">🔗</span>
-          <div class="dd-text">
-            <div class="dd-title">Integration Guide</div>
-            <div class="dd-sub">Slack, Jira, Splunk, Nessus, Notion, M365 & more</div>
-            <div class="dd-ext">↗ AEGIS-Integration-Guide.pdf</div>
-          </div>
-        </a>
-        <div class="dd-divider"></div>
-        <a class="dd-github" href="https://Lywright83.github.io/aegis-security" target="_blank">
-          <span style="font-size:1rem">⬡</span>
-          <span>OPEN AEGIS IN NEW TAB &nbsp;↗</span>
-        </a>
-      </div>
-    </div>
-    <button id="keyBadge" onclick="showKeyManager()" title="API Key — click to update"><div class="key-dot"></div><span id="keyBadgeLabel">KEY: SET</span></button>
-    <span id="clock"></span>
-  </div>
+  <div class="hdr-right"><span id="clock"></span></div>
 </header>
 
 <nav class="tabbar">
@@ -753,7 +216,6 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
   <button class="tab" onclick="switchTab('compliance',this)">📋 COMPLIANCE</button>
   <button class="tab" onclick="switchTab('integrations',this)">🔗 INTEGRATIONS</button>
   <button class="tab" onclick="switchTab('memory',this)">🧠 MEMORY</button>
-  <button class="tab" onclick="switchTab('aiscanner',this)" style="border-left:1px solid rgba(157,111,255,.3);color:var(--purple)">🤖 AI SCANNER</button>
 </nav>
 
 <div class="workspace">
@@ -767,47 +229,29 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
         <button class="qbtn" onclick="sq('Design a zero-trust AWS enterprise network with full security controls, VPC segmentation, IAM, WAF, and monitoring stack.')">🏗️ AWS Enterprise VPC</button>
         <button class="qbtn" onclick="sq('Generate complete production-ready Terraform IaC for a secure 3-tier cloud network with WAF, private subnets, NAT, and security groups.')">⚙️ Terraform IaC</button>
         <button class="qbtn" onclick="sq('Search the web for the latest cybersecurity threats, IOCs, CVEs, and AI-specific attacks from the past 7 days. Give me a full threat briefing.')">🔥 Live Threat Brief</button>
-        <button class="qbtn" onclick="setSkillMode('agent',document.getElementById('skill-agent'));sq('Audit my AI environment. List every AI tool and agent that may have over-permissive access, shadow AI risks, and governance gaps. Give me an AI asset inventory and remediation plan.')">🤖 AI Agent Audit</button>
-        <button class="qbtn" onclick="setSkillMode('roi',document.getElementById('skill-roi'));sq('Analyze my environment from an attacker ROI perspective. Rank my highest-value attack vectors by effort-to-impact ratio and tell me what an adversary would target first.')">🎯 Attacker ROI Score</button>
         <button class="qbtn" onclick="sq('Review this architecture and IAM policies for least-privilege violations, misconfigurations, and security gaps. Give findings with severity ratings.')">🔍 Security Audit</button>
         <button class="qbtn" onclick="sq('Design a complete incident response playbook for a cloud ransomware attack: detection, containment, eradication, recovery, and post-mortem.')">🚨 Incident Response</button>
         <button class="qbtn" onclick="sq('Map my cloud infrastructure to SOC 2 Type II, NIST 800-53, and CIS Controls v8. Give me control IDs, implementation gaps, and remediation steps.')">📋 Compliance Map</button>
         <button class="qbtn" onclick="sq('Validate this code for security misconfigurations, syntax errors, and best practice violations. Flag every issue with severity and line reference.')">✅ Validate My Code</button>
       </div>
       <div class="cs-caps">
-        <div class="cs-label cs-toggle" onclick="toggleSection('skillModes',this)">
-          <span>// Skill Modes</span><span class="cs-arrow">▼</span>
-        </div>
-        <div class="cs-collapsible" id="skillModes" style="display:none">
-          <div class="skill-modes">
-            <button class="skill-btn active" id="skill-architect" onclick="setSkillMode('architect',this)">🏛️ Security Architect</button>
-            <button class="skill-btn" id="skill-threat" onclick="setSkillMode('threat',this)">🔴 Threat Analyst</button>
-            <button class="skill-btn" id="skill-compliance" onclick="setSkillMode('compliance',this)">⚖️ Compliance Advisor</button>
-            <button class="skill-btn" id="skill-cloud" onclick="setSkillMode('cloud',this)">☁️ Cloud Security Engineer</button>
-            <button class="skill-btn" id="skill-ir" onclick="setSkillMode('ir',this)">🚨 Incident Responder</button>
-            <button class="skill-btn" id="skill-devsec" onclick="setSkillMode('devsec',this)">⚙️ DevSecOps Engineer</button>
-            <button class="skill-btn" id="skill-agent" onclick="setSkillMode('agent',this)">🤖 AI Agent Auditor</button>
-            <button class="skill-btn" id="skill-roi" onclick="setSkillMode('roi',this)">🎯 Attacker ROI Analyst</button>
-          </div>
-        </div>
-      </div>
-      <div class="cs-section" style="border-top:1px solid rgba(157,111,255,.2)">
-        <div class="cs-label cs-toggle" style="color:rgba(157,111,255,.7)" onclick="toggleSection('secretPower',this)">
-          <span>// Secret Power</span><span class="cs-arrow">▼</span>
-        </div>
-        <div class="cs-collapsible" id="secretPower" style="display:none;padding-top:6px">
-          <button class="sp-trigger" onclick="openSecretPower()">
-            <div class="sp-trigger-dot"></div>
-            ⚡ AI OPPORTUNITY ENGINE
-          </button>
-        </div>
+        <div class="cs-label">// Capabilities</div>
+        <div class="cap"><div class="cap-dot"></div>Live web search &amp; threat intel</div>
+        <div class="cap"><div class="cap-dot"></div>Cloud architecture (AWS/Azure/GCP)</div>
+        <div class="cap"><div class="cap-dot"></div>Zero-trust network design</div>
+        <div class="cap"><div class="cap-dot"></div>Terraform, CloudFormation, Bicep</div>
+        <div class="cap"><div class="cap-dot"></div>IAM &amp; least-privilege access</div>
+        <div class="cap"><div class="cap-dot"></div>SOC2/NIST/ISO27001/CIS/PCI/HIPAA</div>
+        <div class="cap"><div class="cap-dot"></div>Code validation &amp; security review</div>
+        <div class="cap"><div class="cap-dot"></div>IOC &amp; CVE live tracking</div>
+        <div class="cap"><div class="cap-dot"></div>Kubernetes &amp; container security</div>
+        <div class="cap"><div class="cap-dot"></div>DevSecOps pipeline integration</div>
+        <div class="cap"><div class="cap-dot"></div>Persistent memory (browser + DB)</div>
+        <div class="cap"><div class="cap-dot"></div>Slack/Teams/Jira/Splunk/M365</div>
+        <div class="cap"><div class="cap-dot"></div>Nessus/ServiceNow/Notion/Obsidian</div>
       </div>
     </aside>
     <div class="chat-main">
-      <div id="skillModeBar" style="display:none" class="skill-mode-bar">
-        MODE: <span id="skillModeLabel">SECURITY ARCHITECT</span>
-        <button class="skill-mode-exit" onclick="setSkillMode('architect',document.getElementById('skill-architect'))">✕ EXIT MODE</button>
-      </div>
       <div class="messages" id="messages">
         <div class="welcome" id="welcome">
           <h2>AEGIS ENTERPRISE ONLINE</h2>
@@ -818,8 +262,6 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
             <div class="chip" onclick="sq('Map my architecture to NIST 800-53 and give me the control gaps with remediation.')">NIST Gap Analysis</div>
             <div class="chip" onclick="sq('Validate my Terraform code for security issues. I will paste it now.')">Code Validation</div>
             <div class="chip" onclick="sq('What are the top 10 critical CVEs I need to patch right now?')">Critical CVEs</div>
-            <div class="chip" onclick="setSkillMode('agent',document.getElementById('skill-agent'));sq('Audit my AI environment for security gaps.')">AI Agent Audit</div>
-            <div class="chip" onclick="setSkillMode('roi',document.getElementById('skill-roi'));sq('Score my environment from an attacker ROI perspective.')">Attacker ROI</div>
             <div class="chip" onclick="sq('Design a zero-trust architecture for a hybrid cloud and on-premise environment.')">Zero Trust Design</div>
           </div>
         </div>
@@ -1052,116 +494,6 @@ textarea:focus{border-color:rgba(0,212,255,.4)}
       <div class="int-status-msg" id="db-status"></div>
     </div>
   </div>
-
-<!-- ── AI SCANNER PANEL ── -->
-<div class="panel" id="panel-aiscanner">
-  <div class="ais-panel">
-
-    <!-- Header -->
-    <div class="ais-header">
-      <div class="ais-title-block">
-        <div class="panel-title" style="color:var(--purple)">🤖 AI TECHNOLOGY SCANNER</div>
-        <div class="panel-sub">// LIVE SCAN OF LATEST AI TOOLS · CYBERSECURITY-RELEVANT TOOLS SPOTLIGHTED · ATLAS ANALYSIS</div>
-      </div>
-      <div class="ais-controls">
-        <span class="ais-last-scan" id="aisLastScan">Not scanned yet</span>
-        <button class="ais-scan-btn" id="aisScanBtn" onclick="runAIScanner()">
-          <span>⚡</span> SCAN LATEST AI TOOLS
-        </button>
-      </div>
-    </div>
-
-    <!-- Filter bar -->
-    <div class="ais-filter-bar">
-      <span class="ais-filter-label">FILTER:</span>
-      <button class="ais-filter-btn active" onclick="filterAIS('all',this)">All Tools</button>
-      <button class="ais-filter-btn cyber" onclick="filterAIS('cyber',this)">🔒 Cybersecurity Only</button>
-      <button class="ais-filter-btn" onclick="filterAIS('agent',this)">🤖 AI Agents</button>
-      <button class="ais-filter-btn" onclick="filterAIS('new',this)">🆕 New Releases</button>
-      <button class="ais-filter-btn" onclick="filterAIS('free',this)">🆓 Free / Open Source</button>
-      <button class="ais-filter-btn" onclick="filterAIS('api',this)">⚙️ Has API</button>
-    </div>
-
-    <!-- Stats -->
-    <div class="ais-stats" id="aisStats" style="display:none">
-      <div class="ais-stat">
-        <div class="ais-stat-num" id="aisTotal" style="color:var(--purple)">0</div>
-        <div class="ais-stat-label">TOTAL TOOLS</div>
-      </div>
-      <div class="ais-stat">
-        <div class="ais-stat-num" id="aisCyberCount" style="color:var(--cyan)">0</div>
-        <div class="ais-stat-label">CYBER-RELEVANT</div>
-      </div>
-      <div class="ais-stat">
-        <div class="ais-stat-num" id="aisNewCount" style="color:var(--green)">0</div>
-        <div class="ais-stat-label">NEW THIS WEEK</div>
-      </div>
-      <div class="ais-stat">
-        <div class="ais-stat-num" id="aisAgentCount" style="color:var(--orange)">0</div>
-        <div class="ais-stat-label">AI AGENTS</div>
-      </div>
-    </div>
-
-    <!-- Cyber spotlight section -->
-    <div class="ais-cyber-section" id="aisCyberSpot" style="display:none">
-      <div class="ais-cyber-title">🔒 CYBERSECURITY SPOTLIGHT</div>
-      <div class="ais-cyber-sub">// AI TOOLS WITH DIRECT SECURITY APPLICATIONS — ATLAS RECOMMENDS</div>
-      <div class="ais-grid" id="aisCyberGrid"></div>
-    </div>
-
-    <!-- Main grid -->
-    <div id="aisMainContent">
-      <div class="ais-empty" id="aisEmptyState">
-        <div style="font-size:2.5rem">🤖</div>
-        <div>Click SCAN LATEST AI TOOLS to pull a live feed<br>of the newest AI technologies from the web</div>
-        <div style="font-size:.5rem;color:var(--border);margin-top:8px;line-height:1.8">
-          ATLAS will scan, categorize, and analyze every tool<br>
-          highlighting which ones matter most for your security operations
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ── SECRET POWER: AI OPPORTUNITY ENGINE MODAL ── -->
-<div class="sp-modal" id="spModal">
-  <div class="sp-header">
-    <div class="sp-header-icon">⚡</div>
-    <div class="sp-header-text">
-      <div class="sp-title">AI OPPORTUNITY ENGINE</div>
-      <div class="sp-subtitle">// ATLAS IDENTIFIES WHERE AI CAN TRANSFORM YOUR WORKFLOWS — SECURELY</div>
-    </div>
-    <button class="sp-btn sp-btn-findings" onclick="runAIOpportunityAnalysis()" id="spAnalyzeBtn" style="margin-right:8px">🔍 ANALYZE ENVIRONMENT</button>
-    <button class="sp-close" onclick="closeSecretPower()">✕ CLOSE</button>
-  </div>
-  <div class="sp-body">
-    <!-- Opportunity List -->
-    <div class="sp-list" id="spList">
-      <div class="sp-empty" id="spEmptyState">
-        <div style="font-size:2rem">⚡</div>
-        <div>Click ANALYZE ENVIRONMENT<br>to discover AI opportunities<br>in your infrastructure</div>
-        <div style="font-size:.5rem;color:var(--border);margin-top:8px">ATLAS will scan your environment,<br>identify workflow automation gaps,<br>and generate secured AI solutions</div>
-      </div>
-    </div>
-    <!-- Detail Panel -->
-    <div class="sp-detail">
-      <div class="sp-detail-top" id="spDetailContent">
-        <div class="sp-empty">
-          <div style="font-size:2rem">🎯</div>
-          <div>Select an opportunity<br>to view findings, solution,<br>and deployment plan</div>
-        </div>
-      </div>
-      <div class="sp-actions">
-        <span class="sp-action-label">// ACTIONS:</span>
-        <button class="sp-btn sp-btn-findings" id="spPrintFindings" onclick="printFindings()" disabled>📋 PRINT FINDINGS</button>
-        <button class="sp-btn sp-btn-pdf" id="spPrintSolution" onclick="printSolutionPDF()" disabled>📄 PRINT SOLUTION TO PDF</button>
-        <button class="sp-btn sp-btn-action" id="spTakeAction" onclick="takeAction()" disabled>⚡ TAKE ACTION</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </div>
 
 </div>
@@ -1293,26 +625,8 @@ function addMsgToUI(role,content,ts){
   const w=document.getElementById('welcome');if(w)w.remove();
   const c=document.getElementById('messages');
   const d=document.createElement('div');d.className=`msg ${role}`;
-  const copyBtn=role==='ai'?`<button class="copy-btn" onclick="copyMsg(this,'${btoa(encodeURIComponent(content)).replace(/'/g,"\'")}')">⎘ COPY</button>`:'';
-  d.innerHTML=`<div class="av">${role==='ai'?'AI':'YOU'}</div><div class="mc">${copyBtn}<div class="mm">${role==='ai'?'AEGIS // ':'OPERATOR // '}${ts}</div><div class="mb">${fmt(content)}</div></div>`;
+  d.innerHTML=`<div class="av">${role==='ai'?'AI':'YOU'}</div><div class="mc"><div class="mm">${role==='ai'?'AEGIS // ':'OPERATOR // '}${ts}</div><div class="mb">${fmt(content)}</div></div>`;
   c.appendChild(d);c.scrollTop=c.scrollHeight;
-}
-
-function copyMsg(btn,encoded){
-  try{
-    const text=decodeURIComponent(atob(encoded));
-    navigator.clipboard.writeText(text).then(()=>{
-      btn.textContent='✓ COPIED';btn.classList.add('copied');
-      setTimeout(()=>{btn.textContent='⎘ COPY';btn.classList.remove('copied');},2000);
-    }).catch(()=>{
-      // fallback
-      const ta=document.createElement('textarea');ta.value=text;
-      document.body.appendChild(ta);ta.select();document.execCommand('copy');
-      document.body.removeChild(ta);
-      btn.textContent='✓ COPIED';btn.classList.add('copied');
-      setTimeout(()=>{btn.textContent='⎘ COPY';btn.classList.remove('copied');},2000);
-    });
-  }catch(e){console.warn('Copy failed',e);}
 }
 
 function showTypingUI(id){
@@ -1325,101 +639,10 @@ function rmTyping(id){const t=document.getElementById('typ-'+(id||'messages'));i
 
 function sq(t){document.getElementById('chatInput').value=t;sendChat();}
 
-// ── API KEY MANAGEMENT ──
-const API_KEY_STORAGE='aegis_api_key_v1';
-let AEGIS_API_KEY='';
-
-function loadApiKey(){
-  const k=localStorage.getItem(API_KEY_STORAGE);
-  if(k&&k.startsWith('sk-ant-')&&k.length>20){
-    AEGIS_API_KEY=k;
-    const badge=document.getElementById('keyBadgeLabel');
-    if(badge)badge.textContent='KEY: ...'+k.slice(-6);
-    document.getElementById('apiGate').style.display='none';
-  } else {
-    // No valid key found — show the gate
-    localStorage.removeItem(API_KEY_STORAGE); // clear any invalid stored value
-    const gate=document.getElementById('apiGate');
-    gate.style.display='flex';
-    gate.style.opacity='1';
-  }
-}
-
-function submitKey(){
-  const inp=document.getElementById('apiKeyInput');
-  const err=document.getElementById('gateErr');
-  const btn=document.getElementById('gateBtn');
-  const val=inp.value.trim();
-  err.classList.remove('show');
-  if(!val.startsWith('sk-ant-')||val.length<20){
-    err.textContent='Invalid key format. Anthropic API keys start with sk-ant-';
-    err.classList.add('show');inp.focus();return;
-  }
-  btn.disabled=true;btn.textContent='⚡ VERIFYING...';
-  fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'x-api-key':val,
-      'anthropic-version':'2023-06-01',
-      'anthropic-dangerous-direct-browser-access':'true'
-    },
-    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'hi'}]})
-  }).then(r=>r.json()).then(d=>{
-    if(d.error&&d.error.type==='authentication_error'){
-      err.textContent='⚠️ Key rejected by Anthropic — double-check and try again.';
-      err.classList.add('show');btn.disabled=false;btn.textContent='⚡ INITIALIZE AEGIS';
-    }else{AEGIS_API_KEY=val;localStorage.setItem(API_KEY_STORAGE,val);finalizeGate();}
-  }).catch(()=>{
-    // file:// CORS blocks verification ping — trust key format and proceed
-    AEGIS_API_KEY=val;localStorage.setItem(API_KEY_STORAGE,val);finalizeGate();
-  });
-}
-
-function finalizeGate(){
-  const badge=document.getElementById('keyBadgeLabel');
-  if(badge&&AEGIS_API_KEY)badge.textContent='KEY: ...'+AEGIS_API_KEY.slice(-6);
-  showApp();
-}
-
-function showApp(){
-  const gate=document.getElementById('apiGate');
-  gate.style.transition='opacity .4s ease';
-  gate.style.opacity='0';
-  setTimeout(()=>{gate.style.display='none';gate.style.opacity='1';},420);
-  const badge=document.getElementById('keyBadgeLabel');
-  if(badge&&AEGIS_API_KEY)badge.textContent='KEY: ...'+AEGIS_API_KEY.slice(-6);
-}
-
-function showKeyManager(){
-  const gate=document.getElementById('apiGate');
-  const inp=document.getElementById('apiKeyInput');
-  const btn=document.getElementById('gateBtn');
-  btn.textContent='⚡ UPDATE KEY';inp.value='';
-  gate.style.opacity='0';gate.style.display='flex';
-  requestAnimationFrame(()=>{gate.style.transition='opacity .3s ease';gate.style.opacity='1';});
-  setTimeout(()=>inp.focus(),100);
-}
-
-function toggleKeyVis(){
-  const inp=document.getElementById('apiKeyInput');
-  inp.type=inp.type==='password'?'text':'password';
-}
-
 async function callAPI(messages,system,useSearch){
-  if(!AEGIS_API_KEY)throw new Error('No API key — click the KEY badge in the header to set your Anthropic API key.');
   const body={model:'claude-sonnet-4-20250514',max_tokens:1000,system:system||SYSTEM_PROMPT,messages};
   if(useSearch!==false)body.tools=[{type:'web_search_20250305',name:'web_search'}];
-  const res=await fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'x-api-key':AEGIS_API_KEY,
-      'anthropic-version':'2023-06-01',
-      'anthropic-dangerous-direct-browser-access':'true'
-    },
-    body:JSON.stringify(body)
-  });
+  const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
   return res.json();
 }
 
@@ -1434,7 +657,7 @@ async function sendChat(){
   addMsgToUI('user',text,ts);saveMemory();
   showTypingUI('messages');
   try{
-    const data=await callAPI(sharedHistory.map(m=>({role:m.role==='ai'?'assistant':m.role,content:m.content})),getActiveSystemPrompt());
+    const data=await callAPI(sharedHistory.map(m=>({role:m.role==='ai'?'assistant':m.role,content:m.content})));
     rmTyping('messages');
     if(data.error){
       sharedHistory.pop();saveMemory();
@@ -1444,12 +667,6 @@ async function sendChat(){
       const rts=new Date().toTimeString().split(' ')[0];
       sharedHistory.push({role:'ai',content:reply,ts:rts});
       addMsgToUI('ai',reply,rts);saveMemory();
-      // Auto-return to architect mode after skill response
-      if(currentSkillMode !== 'architect'){
-        setTimeout(()=>{
-          setSkillMode('architect', document.getElementById('skill-architect'));
-        }, 400);
-      }
     }
   }catch(err){rmTyping('messages');sharedHistory.pop();saveMemory();addErr(document.getElementById('messages'),'CONNECTION ERROR: '+err.message);}
   isLoading=false;document.getElementById('sendBtn').disabled=false;input.focus();
@@ -1552,641 +769,7 @@ function saveInt(tool){
 
 function showSt(el,msg,type){el.textContent=msg;el.className=`int-status-msg ${type}`;}
 
-function toggleDocs(e){
-  e.stopPropagation();
-  const dd=document.getElementById('docsDropdown');
-  dd.classList.toggle('open');
-}
-// Close docs dropdown when clicking anywhere else
-document.addEventListener('click',function(e){
-  const wrap=document.getElementById('docsWrap');
-  if(wrap&&!wrap.contains(e.target)){
-    document.getElementById('docsDropdown').classList.remove('open');
-  }
-});
-
-
-
-// ══════════════════════════════════════════════════════
-// ⚡ SECRET POWER — AI OPPORTUNITY ENGINE
-// ══════════════════════════════════════════════════════
-
-let spOpportunities = [];
-let spSelected = null;
-
-function openSecretPower(){
-  document.getElementById('spModal').classList.add('open');
-}
-function closeSecretPower(){
-  document.getElementById('spModal').classList.remove('open');
-}
-
-async function runAIOpportunityAnalysis(){
-  const btn = document.getElementById('spAnalyzeBtn');
-  const list = document.getElementById('spList');
-  const detail = document.getElementById('spDetailContent');
-  btn.disabled = true;
-  btn.textContent = '⏳ SCANNING...';
-  spOpportunities = [];
-  spSelected = null;
-  document.getElementById('spPrintFindings').disabled = true;
-  document.getElementById('spPrintSolution').disabled = true;
-  document.getElementById('spTakeAction').disabled = true;
-
-  list.innerHTML = `<div class="sp-loading"><div style="font-size:2rem">⚡</div><div class="sp-loading-text">ATLAS SCANNING ENVIRONMENT...</div><div style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--txt3)">Analyzing workflows · Identifying AI opportunities · Generating secure solutions</div></div>`;
-  detail.innerHTML = `<div class="sp-empty"><div style="font-size:2rem">🔍</div><div>Analysis in progress...</div></div>`;
-
-  // Build context from memory and conversation history
-  const envContext = sharedHistory
-    .filter(m => m.role === 'user')
-    .map(m => m.content)
-    .slice(-15)
-    .join('
----
-');
-
-  const prompt = `You are ATLAS — AEGIS Atlas's secret AI Opportunity Engine. Analyze the following environment context from conversation history and identify 5-7 specific opportunities where AI agents or automation could dramatically improve security workflows.
-
-ENVIRONMENT CONTEXT FROM CONVERSATIONS:
-${envContext || 'General enterprise security environment — assume a mid-to-large organization with cloud infrastructure, security team, and standard enterprise tools.'}
-
-Return ONLY a valid JSON array. No markdown, no explanation, just the JSON array.
-
-Each opportunity object must have EXACTLY these fields:
-{
-  "id": "unique-slug",
-  "icon": "single emoji",
-  "title": "short opportunity title",
-  "impact": "HIGH" or "MEDIUM" or "LOW",
-  "description": "2 sentence description of the opportunity",
-  "tags": ["tag1","tag2","tag3"],
-  "findings": ["finding 1 sentence","finding 2 sentence","finding 3 sentence"],
-  "solution_title": "AI solution name",
-  "solution_overview": "2-3 sentences describing the AI solution",
-  "steps": [
-    {"num":1,"title":"step title","desc":"step description","code":"optional code snippet or empty string"},
-    {"num":2,"title":"step title","desc":"step description","code":""},
-    {"num":3,"title":"step title","desc":"step description","code":""},
-    {"num":4,"title":"step title","desc":"step description","code":""},
-    {"num":5,"title":"step title","desc":"step description","code":""}
-  ],
-  "security_controls": ["security control 1","security control 2","security control 3"],
-  "action_plan": "What ATLAS would deploy/configure immediately — 2-3 sentences describing the autonomous action",
-  "action_type": "deploy_agent" or "configure_pipeline" or "generate_playbook" or "setup_monitoring" or "create_workflow"
-}
-
-Make opportunities specific, practical, and immediately actionable. Examples of good opportunities:
-- AI-powered alert triage agent to reduce SOC analyst alert fatigue
-- Automated vulnerability remediation workflow with AI prioritization
-- AI code review agent in CI/CD pipeline
-- Natural language query interface for SIEM/Splunk
-- AI-driven compliance evidence collection automation
-- Predictive threat detection using behavioral baselines
-- Automated incident response orchestration
-
-Focus on where AI specifically adds value that humans cannot easily provide manually at scale.`;
-
-  try {
-    const data = await callAPI([{role:'user',content:prompt}],
-      'You are an AI workflow optimization expert. Return only valid JSON arrays. No markdown, no explanation.',
-      false
-    );
-    const text = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    let parsed = [];
-    try {
-      const m = text.match(/\[[\s\S]*\]/);
-      if(m) parsed = JSON.parse(m[0]);
-    } catch(e) { console.warn('Parse error',e); }
-
-    if(parsed.length) {
-      spOpportunities = parsed;
-      renderOpportunityList();
-      selectOpportunity(parsed[0]);
-    } else {
-      list.innerHTML = `<div class="sp-empty">⚠️<br>Could not parse opportunities.<br>Try again.</div>`;
-    }
-  } catch(err) {
-    list.innerHTML = `<div class="sp-empty">❌<br>Error: ${err.message}</div>`;
-  }
-  btn.disabled = false;
-  btn.textContent = '🔍 RE-ANALYZE';
-}
-
-function renderOpportunityList(){
-  const list = document.getElementById('spList');
-  if(!spOpportunities.length){ list.innerHTML = '<div class="sp-empty">No opportunities found.</div>'; return; }
-  list.innerHTML = spOpportunities.map((o,i) => `
-    <div class="sp-opp ${spSelected && spSelected.id===o.id?'selected':''}" onclick="selectOpportunity(spOpportunities[${i}])" id="sp-opp-${o.id}">
-      <div class="sp-opp-header">
-        <span class="sp-opp-icon">${esc(o.icon||'⚡')}</span>
-        <span class="sp-opp-title">${esc(o.title)}</span>
-        <span class="sp-opp-impact imp-${(o.impact||'med').toLowerCase()}">${esc(o.impact||'MEDIUM')}</span>
-      </div>
-      <div class="sp-opp-desc">${esc(o.description)}</div>
-      <div class="sp-opp-tags">${(o.tags||[]).map(t=>`<span class="sp-tag">${esc(t)}</span>`).join('')}</div>
-    </div>
-  `).join('');
-}
-
-function selectOpportunity(opp){
-  spSelected = opp;
-  // Update list selection state
-  document.querySelectorAll('.sp-opp').forEach(el=>el.classList.remove('selected'));
-  const el = document.getElementById(`sp-opp-${opp.id}`);
-  if(el) el.classList.add('selected');
-  // Enable action buttons
-  document.getElementById('spPrintFindings').disabled = false;
-  document.getElementById('spPrintSolution').disabled = false;
-  document.getElementById('spTakeAction').disabled = false;
-  // Render detail
-  const detail = document.getElementById('spDetailContent');
-  detail.innerHTML = `
-    <div class="sp-detail-title">${esc(opp.icon||'⚡')} ${esc(opp.title)}</div>
-    <div class="sp-detail-meta">IMPACT: ${esc(opp.impact)} · TYPE: ${esc((opp.action_type||'').replace(/_/g,' ').toUpperCase())} · AI-SECURED SOLUTION</div>
-
-    <div class="sp-section">
-      <div class="sp-section-label">// FINDINGS — WHERE THE GAP IS</div>
-      ${(opp.findings||[]).map(f=>`<div class="sp-finding"><div class="sp-finding-dot"></div><div class="sp-finding-text">${esc(f)}</div></div>`).join('')}
-    </div>
-
-    <div class="sp-section">
-      <div class="sp-section-label">// AI SOLUTION — ${esc(opp.solution_title||'')}</div>
-      <div class="sp-content">${esc(opp.solution_overview||'')}</div>
-    </div>
-
-    <div class="sp-section">
-      <div class="sp-section-label">// STEP-BY-STEP DEPLOYMENT PLAN</div>
-      ${(opp.steps||[]).map(s=>`
-        <div class="sp-step">
-          <div class="sp-step-num">${s.num}</div>
-          <div class="sp-step-body">
-            <div class="sp-step-title">${esc(s.title)}</div>
-            <div class="sp-step-desc">${esc(s.desc)}</div>
-            ${s.code?`<div class="sp-code">${esc(s.code)}</div>`:''}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="sp-section">
-      <div class="sp-section-label">// SECURITY CONTROLS BUILT IN</div>
-      ${(opp.security_controls||[]).map(c=>`<div class="sp-finding"><div class="sp-finding-dot" style="background:var(--green)"></div><div class="sp-finding-text" style="color:var(--green)">${esc(c)}</div></div>`).join('')}
-    </div>
-
-    <div class="sp-section">
-      <div class="sp-section-label">// ACTION PLAN — WHAT ATLAS WILL DO</div>
-      <div class="sp-content" style="color:var(--purple);background:rgba(157,111,255,.06);padding:12px;border:1px solid rgba(157,111,255,.2);border-radius:2px;border-left:2px solid var(--purple)">${esc(opp.action_plan||'')}</div>
-    </div>
-  `;
-}
-
-function printFindings(){
-  if(!spSelected){ alert('Select an opportunity first.'); return; }
-  const o = spSelected;
-  const win = window.open('','_blank','width=900,height=700');
-  win.document.write(`<!DOCTYPE html><html><head><title>AEGIS Atlas — AI Opportunity Findings</title>
-  <style>
-    body{font-family:Arial,sans-serif;max-width:860px;margin:40px auto;padding:0 20px;color:#222;line-height:1.6}
-    h1{font-size:1.4rem;color:#0044AA;border-bottom:2px solid #0044AA;padding-bottom:8px}
-    h2{font-size:1rem;color:#333;margin-top:20px}
-    .tag{display:inline-block;padding:2px 8px;border:1px solid #0066CC;border-radius:3px;font-size:.75rem;color:#0066CC;margin-right:4px;margin-bottom:4px}
-    .finding{padding:8px 12px;margin:6px 0;border-left:3px solid #7C3AED;background:#F5F0FF}
-    .meta{font-size:.8rem;color:#666;margin-bottom:16px}
-    .header{display:flex;justify-content:space-between;align-items:flex-start}
-    .badge{padding:3px 10px;border-radius:3px;font-size:.75rem;font-weight:bold;background:${o.impact==='HIGH'?'#FFEEEE':o.impact==='MEDIUM'?'#FFF5EE':'#EEF8FF'};color:${o.impact==='HIGH'?'#CC0000':o.impact==='MEDIUM'?'#CC6600':'#0066AA'}}
-    .footer{margin-top:40px;padding-top:12px;border-top:1px solid #ccc;font-size:.75rem;color:#888}
-  </style></head><body>
-  <div class="header"><div><h1>${o.icon} ${o.title}</h1><div class="meta">AEGIS Atlas AI Opportunity Engine · ${new Date().toLocaleDateString()} · Impact: <span class="badge">${o.impact}</span></div></div></div>
-  <div class="meta">${(o.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-  <h2>Overview</h2><p>${o.description}</p>
-  <h2>Key Findings</h2>${(o.findings||[]).map(f=>`<div class="finding">${f}</div>`).join('')}
-  <h2>Solution: ${o.solution_title}</h2><p>${o.solution_overview}</p>
-  <h2>Security Controls</h2>${(o.security_controls||[]).map(c=>`<div class="finding" style="border-color:#009944;background:#EEFFEE">${c}</div>`).join('')}
-  <div class="footer">Generated by AEGIS Atlas · AI Opportunity Engine · Powered by Claude (Anthropic) · Confidential</div>
-  </body></html>`);
-  win.document.close();
-  win.print();
-}
-
-function printSolutionPDF(){
-  if(!spSelected){ alert('Select an opportunity first.'); return; }
-  const o = spSelected;
-  const win = window.open('','_blank','width=900,height=700');
-  win.document.write(`<!DOCTYPE html><html><head><title>AEGIS Atlas — AI Solution Plan: ${o.title}</title>
-  <style>
-    @media print{body{margin:0}.no-print{display:none}}
-    body{font-family:Arial,sans-serif;max-width:860px;margin:40px auto;padding:0 20px;color:#222;line-height:1.7}
-    h1{font-size:1.5rem;color:#4B0082;border-bottom:3px solid #7C3AED;padding-bottom:10px}
-    h2{font-size:1rem;color:#4B0082;margin-top:24px;border-left:3px solid #7C3AED;padding-left:10px}
-    .step{display:flex;gap:16px;margin:10px 0;padding:12px;border:1px solid #E0E0FF;border-radius:4px;background:#FAFAFF}
-    .step-num{font-size:1.2rem;font-weight:bold;color:#7C3AED;min-width:28px}
-    .step-title{font-weight:bold;margin-bottom:4px}
-    .step-desc{font-size:.88rem;color:#444}
-    pre{background:#1a1a2e;color:#00AAFF;padding:10px;border-radius:4px;font-size:.75rem;overflow-x:auto;white-space:pre-wrap}
-    .action-box{padding:14px;background:#F0EEFF;border:1px solid #9D6FFF;border-radius:4px;border-left:4px solid #7C3AED;margin-top:8px}
-    .meta{font-size:.8rem;color:#666;margin-bottom:20px;padding:8px;background:#F5F5FF;border-radius:4px}
-    .footer{margin-top:40px;padding-top:12px;border-top:1px solid #ccc;font-size:.72rem;color:#888;text-align:center}
-    .print-btn{padding:8px 20px;background:#7C3AED;color:white;border:none;border-radius:4px;cursor:pointer;font-size:.9rem;margin-bottom:16px}
-  </style></head><body>
-  <button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
-  <h1>${o.icon} AI Solution Plan: ${o.title}</h1>
-  <div class="meta">
-    <strong>Generated by:</strong> AEGIS Atlas · AI Opportunity Engine &nbsp;|&nbsp;
-    <strong>Date:</strong> ${new Date().toLocaleDateString()} &nbsp;|&nbsp;
-    <strong>Impact:</strong> ${o.impact} &nbsp;|&nbsp;
-    <strong>Type:</strong> ${(o.action_type||'').replace(/_/g,' ').toUpperCase()}
-  </div>
-  <h2>Solution Overview</h2>
-  <p><strong>${o.solution_title}</strong></p>
-  <p>${o.solution_overview}</p>
-  <h2>Step-by-Step Deployment Plan</h2>
-  ${(o.steps||[]).map(s=>`
-    <div class="step">
-      <div class="step-num">${s.num}</div>
-      <div>
-        <div class="step-title">${s.title}</div>
-        <div class="step-desc">${s.desc}</div>
-        ${s.code?`<pre>${s.code}</pre>`:''}
-      </div>
-    </div>
-  `).join('')}
-  <h2>Security Controls & Guardrails</h2>
-  <ul>${(o.security_controls||[]).map(c=>`<li>${c}</li>`).join('')}</ul>
-  <h2>Action Plan — What ATLAS Deploys</h2>
-  <div class="action-box">${o.action_plan}</div>
-  <div class="footer">AEGIS Atlas · AI Opportunity Engine · Powered by Claude (Anthropic) · Confidential Internal Document</div>
-  </body></html>`);
-  win.document.close();
-  setTimeout(()=>win.print(), 500);
-}
-
-async function takeAction(){
-  if(!spSelected) return;
-  const btn = document.getElementById('spTakeAction');
-  const o = spSelected;
-  btn.classList.add('deploying');
-  btn.textContent = '⚡ DEPLOYING...';
-
-  // Build a targeted action prompt
-  const actionPrompt = `ATLAS ACTION MODE — Execute the following AI deployment plan immediately.
-
-OPPORTUNITY: ${o.title}
-ACTION TYPE: ${o.action_type}
-ACTION PLAN: ${o.action_plan}
-
-Generate the complete, production-ready implementation for this AI solution. Include:
-1. All configuration files, scripts, and code needed to deploy this solution TODAY
-2. Security hardening for every component
-3. Integration points with existing security tools (Splunk, Jira, Slack, etc.)
-4. Monitoring and alerting setup for the AI agent/workflow itself
-5. A verification checklist to confirm successful deployment
-
-This is an ACTIVE DEPLOYMENT — produce everything needed to implement this RIGHT NOW.`;
-
-  // Close modal, switch to chat, show the action
-  closeSecretPower();
-  switchTab('chat', document.querySelector('.tab'));
-
-  const ts = new Date().toTimeString().split(' ')[0];
-  const announcement = `⚡ **AI OPPORTUNITY ENGINE — TAKING ACTION**
-
-Deploying: **${o.title}**
-Type: ${(o.action_type||'').replace(/_/g,' ').toUpperCase()}
-
-Generating complete deployment package now...`;
-  addMsgToUI('ai', announcement, ts);
-  sharedHistory.push({role:'user', content:actionPrompt, ts});
-  showTypingUI('messages');
-
-  try{
-    const data = await callAPI(
-      [...sharedHistory.map(m=>({role:m.role==='ai'?'assistant':m.role,content:m.content}))],
-      SYSTEM_PROMPT + `
-
-You are in ACTIVE DEPLOYMENT MODE for an AI opportunity. Generate complete, production-ready code and configurations. No skeletons — full working implementation.`
-    );
-    rmTyping('messages');
-    const reply = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    const rts = new Date().toTimeString().split(' ')[0];
-    sharedHistory.push({role:'ai',content:reply,ts:rts});
-    addMsgToUI('ai',reply,rts);
-    saveMemory();
-  } catch(err) {
-    rmTyping('messages');
-    addErr(document.getElementById('messages'),'ACTION ERROR: '+err.message);
-  }
-
-  btn.classList.remove('deploying');
-  btn.textContent = '⚡ TAKE ACTION';
-}
-
-
-// ══════════════════════════════════════════════════════
-// 🤖 AI TECHNOLOGY SCANNER
-// ══════════════════════════════════════════════════════
-
-let aisAllTools = [];
-let aisCurrentFilter = 'all';
-
-async function runAIScanner(){
-  const btn = document.getElementById('aisScanBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="ais-scan-ring" style="width:14px;height:14px;border-width:2px;display:inline-block"></span> SCANNING...';
-  document.getElementById('aisStats').style.display = 'none';
-  document.getElementById('aisCyberSpot').style.display = 'none';
-  document.getElementById('aisMainContent').innerHTML = `
-    <div class="ais-scanning">
-      <div class="ais-scan-ring"></div>
-      <div class="ais-scan-text">ATLAS SCANNING AI LANDSCAPE...</div>
-      <div class="ais-scan-sub">Pulling latest tools · Analyzing security relevance · Categorizing capabilities</div>
-    </div>`;
-
-  const prompt = `Search the web for the latest AI tools, models, and platforms released or updated in the past 2-4 weeks. Include models, agents, security tools, coding assistants, and infrastructure AI.
-
-Return ONLY a valid JSON array of 16-22 tools. No markdown, no explanation, just the JSON array.
-
-Each tool object must have EXACTLY these fields:
-{
-  "name": "Tool Name",
-  "maker": "Company/Creator",
-  "icon": "single relevant emoji",
-  "description": "2 sentences — what it does and why it matters",
-  "category": "one of: LLM, Security, Agent, DevTools, Multimodal, Infrastructure, Research, Productivity",
-  "is_cyber": true or false (true if directly useful for cybersecurity, threat detection, code security, pen testing, SIEM, SOC, compliance, or security operations),
-  "cyber_use": "if is_cyber is true: 1 sentence on specific cybersecurity application. If false: empty string",
-  "is_new": true or false (released or majorly updated in past 2 weeks),
-  "is_free": true or false (has free tier or is open source),
-  "has_api": true or false,
-  "is_agent": true or false (is an autonomous AI agent or enables agent workflows),
-  "tags": ["tag1","tag2","tag3"],
-  "atlas_take": "ATLAS's 1-sentence expert opinion on this tool's relevance to enterprise security teams"
-}
-
-Include a mix of: frontier models (GPT, Claude, Gemini updates), security-specific AI tools, AI agents, open source models, and coding/DevSecOps tools.
-Make sure at least 6-8 tools have is_cyber: true.`;
-
-  try {
-    const data = await callAPI(
-      [{role:'user', content:prompt}],
-      'You are an AI technology analyst with deep cybersecurity expertise. Return only valid JSON arrays. No markdown.',
-      true // use web search
-    );
-    const text = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    let parsed = [];
-    try {
-      const clean = text.replace(/```json|```/g,'').trim();
-      const m = clean.match(/\[[\s\S]*\]/);
-      if(m) parsed = JSON.parse(m[0]);
-    } catch(e) { console.warn('AIS parse error',e); }
-
-    if(parsed.length){
-      aisAllTools = parsed;
-      document.getElementById('aisLastScan').textContent = 'Last scan: ' + new Date().toLocaleTimeString();
-      renderAISResults(parsed);
-    } else {
-      document.getElementById('aisMainContent').innerHTML = '<div class="ais-empty">⚠️<br>Could not parse results. Try again.</div>';
-    }
-  } catch(err){
-    document.getElementById('aisMainContent').innerHTML = `<div class="ais-empty">❌<br>Scan failed: ${esc(err.message)}</div>`;
-  }
-  btn.disabled = false;
-  btn.innerHTML = '<span>🔄</span> RE-SCAN';
-}
-
-function renderAISResults(tools){
-  // Filter based on current active filter
-  let filtered = filterToolsList(tools, aisCurrentFilter);
-  const cyberTools = tools.filter(t=>t.is_cyber);
-  const newTools = tools.filter(t=>t.is_new);
-  const agentTools = tools.filter(t=>t.is_agent);
-
-  // Update stats
-  document.getElementById('aisStats').style.display = 'flex';
-  document.getElementById('aisTotal').textContent = tools.length;
-  document.getElementById('aisCyberCount').textContent = cyberTools.length;
-  document.getElementById('aisNewCount').textContent = newTools.length;
-  document.getElementById('aisAgentCount').textContent = agentTools.length;
-
-  // Cyber spotlight — always show top cyber tools regardless of filter
-  if(cyberTools.length && (aisCurrentFilter === 'all' || aisCurrentFilter === 'cyber')){
-    document.getElementById('aisCyberSpot').style.display = 'block';
-    document.getElementById('aisCyberGrid').innerHTML = cyberTools.map(t=>renderAICard(t,true)).join('');
-  } else {
-    document.getElementById('aisCyberSpot').style.display = 'none';
-  }
-
-  // Main grid — all tools or filtered (exclude cyber from main if showing spotlight)
-  const mainTools = (aisCurrentFilter === 'all') ? tools.filter(t=>!t.is_cyber) : filtered;
-  if(mainTools.length){
-    const sectionLabel = aisCurrentFilter === 'all'
-      ? `<div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--txt3);letter-spacing:3px;margin-bottom:12px">// ALL OTHER AI TOOLS (${mainTools.length})</div>`
-      : `<div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--txt3);letter-spacing:3px;margin-bottom:12px">// FILTERED: ${aisCurrentFilter.toUpperCase()} (${mainTools.length} TOOLS)</div>`;
-    document.getElementById('aisMainContent').innerHTML = sectionLabel +
-      `<div class="ais-grid">${mainTools.map(t=>renderAICard(t,false)).join('')}</div>`;
-  } else {
-    document.getElementById('aisMainContent').innerHTML = `<div class="ais-empty">No tools match this filter.</div>`;
-  }
-}
-
-function filterToolsList(tools, filter){
-  switch(filter){
-    case 'cyber': return tools.filter(t=>t.is_cyber);
-    case 'agent': return tools.filter(t=>t.is_agent);
-    case 'new':   return tools.filter(t=>t.is_new);
-    case 'free':  return tools.filter(t=>t.is_free);
-    case 'api':   return tools.filter(t=>t.has_api);
-    default:      return tools;
-  }
-}
-
-function filterAIS(filter, btn){
-  aisCurrentFilter = filter;
-  document.querySelectorAll('.ais-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  if(aisAllTools.length) renderAISResults(aisAllTools);
-}
-
-function renderAICard(t, isCyberSection){
-  const badges = [];
-  if(t.is_cyber) badges.push('<span class="ait-badge badge-cyber">🔒 CYBER</span>');
-  if(t.is_new)   badges.push('<span class="ait-badge badge-new">🆕 NEW</span>');
-  if(t.is_free)  badges.push('<span class="ait-badge badge-free">🆓 FREE</span>');
-  if(t.has_api)  badges.push('<span class="ait-badge badge-api">⚙️ API</span>');
-  if(t.is_agent) badges.push('<span class="ait-badge badge-agent">🤖 AGENT</span>');
-
-  const cyberBox = t.is_cyber && t.cyber_use ? `
-    <div style="margin:0 14px 10px;padding:8px 10px;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-left:2px solid var(--cyan);border-radius:2px">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--cyan);letter-spacing:1px;margin-bottom:3px">🔒 SECURITY USE</div>
-      <div style="font-size:.75rem;color:var(--txt2);line-height:1.5">${esc(t.cyber_use)}</div>
-    </div>` : '';
-
-  const atlasBox = t.atlas_take ? `
-    <div style="margin:0 14px 10px;padding:7px 10px;background:rgba(157,111,255,.05);border:1px solid rgba(157,111,255,.15);border-radius:2px">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.48rem;color:var(--purple);letter-spacing:1px;margin-bottom:2px">⚡ ATLAS TAKE</div>
-      <div style="font-size:.72rem;color:var(--txt2);line-height:1.5;font-style:italic">${esc(t.atlas_take)}</div>
-    </div>` : '';
-
-  return `
-    <div class="ait-card ${t.is_cyber?'is-cyber':''}">
-      <div class="ait-card-header">
-        <div class="ait-card-icon">${esc(t.icon||'🤖')}</div>
-        <div class="ait-card-meta">
-          <div class="ait-card-name">${esc(t.name)}</div>
-          <div class="ait-card-maker">${esc(t.maker)} · ${esc(t.category)}</div>
-          <div class="ait-card-badges">${badges.join('')}</div>
-        </div>
-      </div>
-      <div class="ait-card-desc">${esc(t.description)}</div>
-      ${cyberBox}
-      ${atlasBox}
-      <div class="ait-card-footer">
-        <span class="ait-card-category">${(t.tags||[]).map(tg=>`#${tg}`).join(' ')}</span>
-        <button class="ait-card-btn" onclick="askAtlasAbout('${esc(t.name).replace(/'/g,'\\\'')}','${esc(t.category)}','${esc(t.cyber_use||t.description).replace(/'/g,'\\\'')}')">ASK ATLAS →</button>
-      </div>
-      <button class="ait-ask-btn" onclick="askAtlasAbout('${esc(t.name).replace(/'/g,'\\\'')}','${esc(t.category)}','${esc(t.cyber_use||t.description).replace(/'/g,'\\\'')}')">
-        💬 How can I integrate ${esc(t.name)} into my security stack?
-      </button>
-    </div>`;
-}
-
-function askAtlasAbout(name, category, useCase){
-  // Switch to chat tab and ask ATLAS about this tool
-  switchTab('chat', document.querySelector('.tab'));
-  const q = `Tell me everything I need to know about integrating ${name} (${category}) into my enterprise security stack. Specifically: ${useCase}. Cover: security considerations, deployment steps, integration with my existing tools, and any risks or governance requirements.`;
-  document.getElementById('chatInput').value = q;
-  sendChat();
-}
-
-function toggleSection(id, headerEl){
-  const section = document.getElementById(id);
-  const arrow = headerEl.querySelector('.cs-arrow');
-  const isOpen = section.style.display !== 'none';
-  section.style.display = isOpen ? 'none' : 'block';
-  if(arrow) arrow.classList.toggle('open', !isOpen);
-}
-
-// ── SKILL MODES ──
-let currentSkillMode = 'architect';
-
-const SKILL_PROMPTS = {
-  architect: null, // uses default SYSTEM_PROMPT
-  threat: `You are ATLAS in THREAT ANALYST MODE — a specialist in live threat intelligence, IOC hunting, CVE analysis, and adversary profiling. Your sole focus right now is threat intelligence.
-- Search the web aggressively for current threats, CVEs, IOCs, malware campaigns, and APT activity
-- Map every threat to MITRE ATT&CK technique IDs
-- Provide CVSS scores, affected systems, exploitation status, and immediate mitigation steps
-- Profile threat actors with known TTPs, targets, and attribution
-- Output findings with CRITICAL/HIGH/MEDIUM severity tags
-- When done, tell the user you are returning to Architect mode.`,
-
-  compliance: `You are ATLAS in COMPLIANCE ADVISOR MODE — a specialist in security frameworks, audit preparation, and regulatory requirements.
-- Map questions to exact control IDs (NIST 800-53, CIS, SOC2, ISO 27001, PCI-DSS, HIPAA, FedRAMP, CMMC)
-- Provide implementation guidance, required audit evidence, and gap remediation steps
-- Generate compliance matrices, control narratives, and audit-ready documentation
-- Note: expert AI guidance, not a formal certified audit
-- When done, tell the user you are returning to Architect mode.`,
-
-  cloud: `You are ATLAS in CLOUD SECURITY ENGINEER MODE — a specialist in cloud infrastructure security, IaC, and native security services.
-- Produce complete, production-ready, deployable Terraform/CloudFormation/Bicep — never skeletons
-- Cover IAM least-privilege, VPC security, WAF, encryption at rest/transit, security groups, logging
-- Support AWS, Azure, GCP, and multi-cloud architectures
-- Flag every misconfiguration with severity and remediation
-- When done, tell the user you are returning to Architect mode.`,
-
-  ir: `You are ATLAS in INCIDENT RESPONDER MODE — a specialist in active incident response, forensics, and breach containment.
-- Guide through detection, containment, eradication, recovery, and post-mortem phases
-- Provide specific commands, queries, and tool configurations for each IR phase
-- Generate timeline documentation, IOC lists, and executive summaries
-- Cover ransomware, data breach, insider threat, and cloud compromise scenarios
-- When done, tell the user you are returning to Architect mode.`,
-
-  devsec: `You are ATLAS in DEVSECOPS ENGINEER MODE — a specialist in secure CI/CD pipelines, code security, and supply chain protection.
-- Review code for security vulnerabilities with exact line numbers and severity ratings
-- Design secure CI/CD pipelines with SAST, DAST, secrets scanning, and SBOM generation
-- Cover secrets management (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault)
-- Audit container images, Kubernetes configs, and dependency chains for vulnerabilities
-- When done, tell the user you are returning to Architect mode.`,
-
-  agent: `You are ATLAS in AI AGENT AUDITOR MODE — a specialist in auditing AI systems, agents, and LLM deployments for security risks.
-This is a cutting-edge capability. Your focus:
-- Audit AI agent permissions: what data, APIs, tools, and systems does each agent have access to?
-- Identify over-permissive AI access: agents with write access to email, code repos, identity providers
-- Detect shadow AI: unsanctioned LLM tools employees are using without IT visibility
-- Generate detection rules for agent-initiated behavior anomalies in SIEM/Splunk
-- Assess prompt injection risk, data exfiltration via AI, and AI model poisoning vectors
-- Map AI governance gaps to frameworks: NIST AI RMF, EU AI Act, ISO 42001
-- Build an AI asset inventory: every AI tool, agent, and model in the environment
-- When done, tell the user you are returning to Architect mode.`,
-
-  roi: `You are ATLAS in ATTACKER ROI ANALYST MODE — you see the environment through an adversary's eyes.
-This is a unique capability: you calculate attacker Return on Investment (ROI) for every potential attack vector.
-- Rank attack paths by effort-to-impact ratio — what would an attacker target FIRST for maximum gain with minimum effort?
-- Score each vector: Ease of Exploitation + Asset Value + Detection Likelihood = ROI Score
-- Identify the "low-hanging fruit" — unauthenticated services, unpatched CVEs, misconfigured cloud storage, weak IAM
-- Simulate attacker decision trees: initial access → lateral movement → impact
-- Prioritize your remediation list based on what attackers would actually do
-- Reference the 2026 Cloudflare Threat Report finding: attackers now optimize for throughput and MOE (Measure of Effectiveness)
-- When done, tell the user you are returning to Architect mode.`
-};
-
-const SKILL_LABELS = {
-  architect:'SECURITY ARCHITECT',
-  threat:'THREAT ANALYST',
-  compliance:'COMPLIANCE ADVISOR',
-  cloud:'CLOUD SECURITY ENGINEER',
-  ir:'INCIDENT RESPONDER',
-  devsec:'DEVSECOPS ENGINEER',
-  agent:'AI AGENT AUDITOR',
-  roi:'ATTACKER ROI ANALYST'
-};
-
-function setSkillMode(mode, btn){
-  currentSkillMode = mode;
-  // Update button states
-  document.querySelectorAll('.skill-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  // Show/hide mode bar
-  const bar = document.getElementById('skillModeBar');
-  const label = document.getElementById('skillModeLabel');
-  if(mode === 'architect'){
-    bar.style.display = 'none';
-  } else {
-    bar.style.display = 'flex';
-    label.textContent = SKILL_LABELS[mode] || mode.toUpperCase();
-  }
-  // Announce the mode switch in chat
-  const ts = new Date().toTimeString().split(' ')[0];
-  const msgs = {
-    architect: '✅ Returning to **Security Architect** mode. I have full breadth across all security domains.',
-    threat: '🔴 Switching to **Threat Analyst** mode. I am now focused exclusively on live threat intelligence, CVE analysis, IOC hunting, and adversary profiling. What threat are we investigating?',
-    compliance: '⚖️ Switching to **Compliance Advisor** mode. I am now focused on frameworks, control mapping, audit evidence, and gap analysis. Which framework are we working with?',
-    cloud: '☁️ Switching to **Cloud Security Engineer** mode. I will produce complete, deployable IaC and cloud security architecture. What are we building?',
-    ir: '🚨 Switching to **Incident Responder** mode. I am now in IR posture — detection, containment, eradication, recovery. What is the incident?',
-    devsec: '⚙️ Switching to **DevSecOps Engineer** mode. I am focused on secure pipelines, code review, and supply chain security. What are we securing?',
-    agent: '🤖 Switching to **AI Agent Auditor** mode. I will audit your AI environment for over-permissive access, shadow AI, governance gaps, and agent security risks. Describe your AI deployment.',
-    roi: '🎯 Switching to **Attacker ROI Analyst** mode. I will analyze your environment from an adversary's perspective and rank your highest-value attack vectors by effort-to-impact ratio. Describe your environment or paste your architecture.'
-  };
-  if(msgs[mode]){
-    addMsgToUI('ai', msgs[mode], ts);
-    sharedHistory.push({role:'ai',content:msgs[mode],ts});
-    saveMemory();
-  }
-  // Scroll to chat tab
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-chat').classList.add('active');
-  document.querySelector('.tab').classList.add('active');
-}
-
-// Override SYSTEM_PROMPT selection based on skill mode
-function getActiveSystemPrompt(){
-  if(currentSkillMode !== 'architect' && SKILL_PROMPTS[currentSkillMode]){
-    return SKILL_PROMPTS[currentSkillMode];
-  }
-  return SYSTEM_PROMPT;
-}
-
 loadMemory();
-loadApiKey();
 </script>
 </body>
 </html>
